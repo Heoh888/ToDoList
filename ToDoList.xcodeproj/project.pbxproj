@@ -94,12 +94,14 @@
 		86BB6B8C2CE6F79800ED4582 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				86BB6B8D2CE6F79800ED4582 /* AppDelegate.swift */,
-				86BB6B8F2CE6F79800ED4582 /* SceneDelegate.swift */,
-				86BB6B912CE6F79800ED4582 /* ViewController.swift */,
-				86BB6B932CE6F79800ED4582 /* Main.storyboard */,
-				86BB6B962CE6F79A00ED4582 /* Assets.xcassets */,
-				86BB6B982CE6F79A00ED4582 /* LaunchScreen.storyboard */,
+				86BB6BBD2CE6FA2E00ED4582 /* Application */,
+				86BB6BBE2CE6FA5000ED4582 /* Modules */,
+				86BB6BC12CE6FA7600ED4582 /* Resources */,
+				86BB6BC22CE6FA9200ED4582 /* Models */,
+				86BB6BC32CE6FA9A00ED4582 /* Networking */,
+				86BB6BC42CE6FAA300ED4582 /* Persistence */,
+				86BB6BC52CE6FABF00ED4582 /* Extensions */,
+				86BB6BC62CE6FACA00ED4582 /* Supporting Files */,
 				86BB6B9B2CE6F79A00ED4582 /* Info.plist */,
 			);
 			path = ToDoList;
@@ -111,6 +113,84 @@
 				86BB6BA42CE6F79A00ED4582 /* ToDoListTests.swift */,
 			);
 			path = ToDoListTests;
+			sourceTree = "<group>";
+		};
+		86BB6BBD2CE6FA2E00ED4582 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				86BB6B982CE6F79A00ED4582 /* LaunchScreen.storyboard */,
+				86BB6B932CE6F79800ED4582 /* Main.storyboard */,
+				86BB6B912CE6F79800ED4582 /* ViewController.swift */,
+				86BB6B8F2CE6F79800ED4582 /* SceneDelegate.swift */,
+				86BB6B8D2CE6F79800ED4582 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		86BB6BBE2CE6FA5000ED4582 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				86BB6BC02CE6FA6000ED4582 /* TaskDetail */,
+				86BB6BBF2CE6FA5800ED4582 /* TaskList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		86BB6BBF2CE6FA5800ED4582 /* TaskList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TaskList;
+			sourceTree = "<group>";
+		};
+		86BB6BC02CE6FA6000ED4582 /* TaskDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TaskDetail;
+			sourceTree = "<group>";
+		};
+		86BB6BC12CE6FA7600ED4582 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				86BB6B962CE6F79A00ED4582 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		86BB6BC22CE6FA9200ED4582 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86BB6BC32CE6FA9A00ED4582 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		86BB6BC42CE6FAA300ED4582 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		86BB6BC52CE6FABF00ED4582 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		86BB6BC62CE6FACA00ED4582 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
