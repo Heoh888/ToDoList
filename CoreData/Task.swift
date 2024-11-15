@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 @objc(Task)
-public class TaskEntity: NSManagedObject {}
+public class Task: NSManagedObject {}
 
-extension TaskEntity {
+extension Task {
     @NSManaged public var id: Int16
     @NSManaged public var title: String?
     @NSManaged public var descriptionText: String?
@@ -20,4 +20,4 @@ extension TaskEntity {
     @NSManaged public var isCompleted: Bool
 }
 
-extension TaskEntity : Identifiable {}
+extension Task : Identifiable {}
