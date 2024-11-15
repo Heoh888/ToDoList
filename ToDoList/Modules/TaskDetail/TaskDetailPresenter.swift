@@ -7,6 +7,15 @@
 
 import Foundation
 
-class TaskDetailPresenter {
+protocol TaskDetailPresenterInput {
+    func presentTaskDetails(task: TaskEntity)
+}
+
+class TaskDetailPresenter: TaskDetailPresenterInput {
     
+    weak var view: TaskDetailViewInput?
+    
+    func presentTaskDetails(task: TaskEntity) {
+        view?.showTaskDetails()
+    }
 }

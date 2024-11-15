@@ -35,7 +35,7 @@ class NetworkServiceTests: XCTestCase {
         }
         """.data(using: .utf8)
 
-        mockSession.mockData = jsonData // Устанавливаем мокированные данные
+        mockSession.mockData = jsonData
 
         let expectation = XCTestExpectation(description: "Fetch tasks")
 
@@ -56,12 +56,11 @@ class NetworkServiceTests: XCTestCase {
     }
 
     func testFetchTasksHandlesError() {
-        mockSession.mockError = NSError(domain: "", code: 404, userInfo: nil) // Имитируем ошибку
+        mockSession.mockError = NSError(domain: "", code: 404, userInfo: nil)
 
         let expectation = XCTestExpectation(description: "Handle error gracefully")
 
         networkService.fetchTasks { result in
-            // Проверяем, что метод не вернет задач
             switch result {
             case .success(let success):
                 print("")

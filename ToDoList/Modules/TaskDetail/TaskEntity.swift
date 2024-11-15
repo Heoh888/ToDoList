@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct TaskEntity: Codable {
+class TaskEntity: Codable {
     let id: Int
     let title: String?
-    let descriptionText: String?
-    let creationDate: Date?
-    let isCompleted: Bool
+    var descriptionText: String?
+    var creationDate: Date?
+    var isCompleted: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
