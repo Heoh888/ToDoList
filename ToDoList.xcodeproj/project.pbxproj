@@ -13,7 +13,7 @@
 		86BB6B952CE6F79800ED4582 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86BB6B932CE6F79800ED4582 /* Main.storyboard */; };
 		86BB6B972CE6F79A00ED4582 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86BB6B962CE6F79A00ED4582 /* Assets.xcassets */; };
 		86BB6B9A2CE6F79A00ED4582 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86BB6B982CE6F79A00ED4582 /* LaunchScreen.storyboard */; };
-		86BB6BA52CE6F79A00ED4582 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BA42CE6F79A00ED4582 /* ToDoListTests.swift */; };
+		86BB6BA52CE6F79A00ED4582 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BA42CE6F79A00ED4582 /* NetworkServiceTests.swift */; };
 		86BB6BC92CE6FB9F00ED4582 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BC72CE6FB9F00ED4582 /* CoreData.xcdatamodeld */; };
 		86BB6BCD2CE6FC6A00ED4582 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BCB2CE6FC6A00ED4582 /* Task.swift */; };
 		86BB6BD02CE6FDD300ED4582 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BCF2CE6FDD300ED4582 /* StorageManager.swift */; };
@@ -26,8 +26,15 @@
 		86BB6BDE2CE7010C00ED4582 /* TaskDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BDD2CE7010C00ED4582 /* TaskDetailInteractor.swift */; };
 		86BB6BE02CE7012800ED4582 /* TaskDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BDF2CE7012800ED4582 /* TaskDetailPresenter.swift */; };
 		86BB6BE22CE7013A00ED4582 /* TaskDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE12CE7013A00ED4582 /* TaskDetailRouter.swift */; };
-		86BB6BE42CE7024100ED4582 /* TodoListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE32CE7024100ED4582 /* TodoListEntity.swift */; };
+		86BB6BE42CE7024100ED4582 /* TaskListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE32CE7024100ED4582 /* TaskListEntity.swift */; };
 		86BB6BE62CE7036000ED4582 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE52CE7036000ED4582 /* TaskEntity.swift */; };
+		86BB6BE82CE7062300ED4582 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE72CE7062300ED4582 /* MockURLSession.swift */; };
+		86BB6BE92CE7063100ED4582 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BD12CE6FE1A00ED4582 /* NetworkService.swift */; };
+		86BB6BEA2CE7063200ED4582 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BD12CE6FE1A00ED4582 /* NetworkService.swift */; };
+		86BB6BEB2CE7071400ED4582 /* TaskListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE32CE7024100ED4582 /* TaskListEntity.swift */; };
+		86BB6BEC2CE7071400ED4582 /* TaskListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE32CE7024100ED4582 /* TaskListEntity.swift */; };
+		86BB6BED2CE7071700ED4582 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE52CE7036000ED4582 /* TaskEntity.swift */; };
+		86BB6BEE2CE7071700ED4582 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE52CE7036000ED4582 /* TaskEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +64,7 @@
 		86BB6B992CE6F79A00ED4582 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86BB6B9B2CE6F79A00ED4582 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86BB6BA02CE6F79A00ED4582 /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		86BB6BA42CE6F79A00ED4582 /* ToDoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
+		86BB6BA42CE6F79A00ED4582 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		86BB6BAA2CE6F79A00ED4582 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BB6BC82CE6FB9F00ED4582 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		86BB6BCB2CE6FC6A00ED4582 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -71,8 +78,9 @@
 		86BB6BDD2CE7010C00ED4582 /* TaskDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailInteractor.swift; sourceTree = "<group>"; };
 		86BB6BDF2CE7012800ED4582 /* TaskDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailPresenter.swift; sourceTree = "<group>"; };
 		86BB6BE12CE7013A00ED4582 /* TaskDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailRouter.swift; sourceTree = "<group>"; };
-		86BB6BE32CE7024100ED4582 /* TodoListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListEntity.swift; sourceTree = "<group>"; };
+		86BB6BE32CE7024100ED4582 /* TaskListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListEntity.swift; sourceTree = "<group>"; };
 		86BB6BE52CE7036000ED4582 /* TaskEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
+		86BB6BE72CE7062300ED4582 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +147,8 @@
 		86BB6BA32CE6F79A00ED4582 /* ToDoListTests */ = {
 			isa = PBXGroup;
 			children = (
-				86BB6BA42CE6F79A00ED4582 /* ToDoListTests.swift */,
+				86BB6BA42CE6F79A00ED4582 /* NetworkServiceTests.swift */,
+				86BB6BE72CE7062300ED4582 /* MockURLSession.swift */,
 			);
 			path = ToDoListTests;
 			sourceTree = "<group>";
@@ -171,7 +180,7 @@
 				86BB6BD32CE6FE6D00ED4582 /* TaskListViewController.swift */,
 				86BB6BD52CE6FE8500ED4582 /* TaskListInteractor.swift */,
 				86BB6BD72CE6FE9800ED4582 /* TaskListPresenter.swift */,
-				86BB6BE32CE7024100ED4582 /* TodoListEntity.swift */,
+				86BB6BE32CE7024100ED4582 /* TaskListEntity.swift */,
 				86BB6BD92CE6FEBE00ED4582 /* TaskListRouter.swift */,
 			);
 			path = TaskList;
@@ -388,7 +397,7 @@
 				86BB6B902CE6F79800ED4582 /* SceneDelegate.swift in Sources */,
 				86BB6BE02CE7012800ED4582 /* TaskDetailPresenter.swift in Sources */,
 				86BB6BE22CE7013A00ED4582 /* TaskDetailRouter.swift in Sources */,
-				86BB6BE42CE7024100ED4582 /* TodoListEntity.swift in Sources */,
+				86BB6BE42CE7024100ED4582 /* TaskListEntity.swift in Sources */,
 				86BB6BE62CE7036000ED4582 /* TaskEntity.swift in Sources */,
 				86BB6BD22CE6FE1A00ED4582 /* NetworkService.swift in Sources */,
 			);
@@ -398,7 +407,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BB6BA52CE6F79A00ED4582 /* ToDoListTests.swift in Sources */,
+				86BB6BED2CE7071700ED4582 /* TaskEntity.swift in Sources */,
+				86BB6BE82CE7062300ED4582 /* MockURLSession.swift in Sources */,
+				86BB6BE92CE7063100ED4582 /* NetworkService.swift in Sources */,
+				86BB6BA52CE6F79A00ED4582 /* NetworkServiceTests.swift in Sources */,
+				86BB6BEB2CE7071400ED4582 /* TaskListEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +419,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BB6BEE2CE7071700ED4582 /* TaskEntity.swift in Sources */,
+				86BB6BEA2CE7063200ED4582 /* NetworkService.swift in Sources */,
+				86BB6BEC2CE7071400ED4582 /* TaskListEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

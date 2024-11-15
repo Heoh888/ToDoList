@@ -13,4 +13,12 @@ struct TaskEntity: Codable {
     let descriptionText: String?
     let creationDate: Date?
     let isCompleted: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case isCompleted = "completed"
+        case title = "todo"
+        case descriptionText = "description"
+        case creationDate = "creation_date"
+    }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TodoListEntity: Codable {
+struct TaskListEntity: Codable {
     let todos: [TaskEntity]
     let total: Int
 }

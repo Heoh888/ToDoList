@@ -8,9 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let service = NetworkService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.fetchTasks { data in
+            print(data)
+        }
     }
 }
 
