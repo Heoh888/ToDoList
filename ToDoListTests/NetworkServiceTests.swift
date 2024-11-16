@@ -69,7 +69,6 @@ class NetworkServiceTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-
         wait(for: [expectation], timeout: 1.0)
     }
 }

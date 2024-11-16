@@ -144,7 +144,7 @@ class TaskCell: UITableViewCell {
         guard let date = date else { return "" }
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yy" // Задайте нужный формат
+        dateFormatter.dateFormat = "dd.MM.yy" // Задайте нужный формат
         return dateFormatter.string(from: date)
     }
 }
