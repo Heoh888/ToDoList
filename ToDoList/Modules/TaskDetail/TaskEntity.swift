@@ -7,9 +7,9 @@
 
 import Foundation
 
-class TaskEntity: Codable {
-    let id: Int
-    let title: String?
+struct TaskEntity: Codable, Equatable, Hashable {
+    let id: Int16
+    let title: String
     var descriptionText: String?
     var creationDate: Date?
     var isCompleted: Bool

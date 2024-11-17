@@ -9,15 +9,15 @@
 import Foundation
 import CoreData
 
-@objc(Task)
-public class Task: NSManagedObject {}
+@objc(TaskModel)
+public class TaskModel: NSManagedObject {}
 
-extension Task {
+extension TaskModel {
     @NSManaged public var id: Int16
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
     @NSManaged public var descriptionText: String?
     @NSManaged public var creationDate: Date?
     @NSManaged public var isCompleted: Bool
 }
 
-extension Task : Identifiable {}
+extension TaskModel : Identifiable {}

@@ -22,8 +22,8 @@ class TaskCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .lightGray // Цвет текста
-        label.numberOfLines = 0 // Позволяет тексту занимать много строк
+        label.textColor = .lightGray
+        label.numberOfLines = 0
         return label
     }()
 
@@ -49,7 +49,7 @@ class TaskCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        addGestureToStatusImageView()
+        addGestureToStatus()
     }
 
     required init?(coder: NSCoder) {
@@ -64,9 +64,8 @@ class TaskCell: UITableViewCell {
 
         setupConstraints()
 
-        // Основные настройки ячейки
-        selectionStyle = .none // Убираем выделение ячейки
-        contentView.backgroundColor = .black // Фон ячейки
+        selectionStyle = .none
+        contentView.backgroundColor = .black
     }
 
     private func setupConstraints() {
@@ -95,24 +94,21 @@ class TaskCell: UITableViewCell {
         ])
     }
 
-    private func addGestureToStatusImageView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(statusImageTapped))
+    private func addGestureToStatus() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(statusTask))
         statusImageView.isUserInteractionEnabled = true
         statusImageView.addGestureRecognizer(tapGesture)
     }
 
-    @objc private func statusImageTapped() {
-        guard let task = task else { return }
-        task.isCompleted.toggle() // Меняем состояние isCompleted
-        configure(with: task) // Обновляем изображение
-        // Если необходимо, уведомите делегата или школу о том, что задача была обновлена
+    @objc private func statusTask() {
+        guard var task = task else { return }
+        task.isCompleted.toggle()
+        configure(with: task)
     }
 
     // MARK: - Configuration
     func configure(with task: TaskEntity?) {
-        guard let task = task else { return }
-        task.descriptionText = "Сходить в спортзал или сделать тренировку дома. Не забыть про разминку и растяжку!"
-        task.creationDate = Date()
+        guard var task = task else { return }
 
         if let description = task.descriptionText, !description.isEmpty {
             descriptionLabel.text = description
@@ -120,11 +116,11 @@ class TaskCell: UITableViewCell {
         
         self.task = task
         titleLabel.attributedText = task.isCompleted ?
-        NSAttributedString(string: task.title ?? "", attributes: [
+        NSAttributedString(string: task.title, attributes: [
             .strikethroughStyle: NSUnderlineStyle.single.rawValue,
             .foregroundColor: UIColor.lightGray
         ]) :
-        NSAttributedString(string: task.title ?? "", attributes: [
+        NSAttributedString(string: task.title, attributes: [
             .foregroundColor: UIColor.white
         ])
         descriptionLabel.attributedText = task.isCompleted ?
@@ -135,7 +131,7 @@ class TaskCell: UITableViewCell {
             .foregroundColor: UIColor.white
         ])
         
-        dateLabel.text = formatDate(task.creationDate) // Предполагаем, что у вас есть поле для даты создания
+        dateLabel.text = task.creationDate?.currentDateToString() ?? "" // Предполагаем, что у вас есть поле для даты создания
         statusImageView.tintColor = .yellow
         statusImageView.image = task.isCompleted ? UIImage(named: "isCompleted") : UIImage(named: "notCompleted")
     }

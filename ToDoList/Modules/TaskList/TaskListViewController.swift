@@ -62,14 +62,14 @@ class TaskListViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false // Убедитесь, что это установлено в false
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let toolbar: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "ToolBar")
-        view.translatesAutoresizingMaskIntoConstraints = false // Убедитесь, что это установлено в false
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -79,9 +79,16 @@ class TaskListViewController: UIViewController {
         presenter = TaskListPresenter()
         presenter.view = self
         setupUI()
-        presenter.loadTasks()
+        presenter.fetchTasksFromNetwork()
         tableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            presenter.fetchTasksFromLocalStorage()
+            tableView.reloadData()
+        }
+
 
     private func setupUI() {
         navigationItem.titleView = titleLabel
@@ -89,7 +96,6 @@ class TaskListViewController: UIViewController {
         view.addSubview(searchBar)
         view.addSubview(tableView)
         view.addSubview(toolbar)
-        
         // Добавляем метку и кнопку к нижнему бару
         toolbar.addSubview(taskCountLabel)
         toolbar.addSubview(addButton)

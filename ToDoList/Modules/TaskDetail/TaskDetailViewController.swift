@@ -18,7 +18,9 @@ class TaskDetailViewController: UIViewController {
     var task: TaskEntity?
     
     private let rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(rightButtonTapped))
+        let button = UIBarButtonItem(title: "Сохранить", style: .plain, 
+                                     target: self,
+                                     action: #selector(rightButtonTapped))
         return button
     }()
     
@@ -146,7 +148,14 @@ class TaskDetailViewController: UIViewController {
     }
     
     @objc private func rightButtonTapped() {
-        print("Правый кнопка нажата")
+        guard let id = UUID().uuidToInt16() else { return }
+        let newTask = TaskEntity(id: id,
+                                 title: titleTextView.text,
+                                 descriptionText: descriptionTextView.text,
+                                 creationDate: datePicker.date,
+                                 isCompleted: false)
+        presenter.createTask(newTask)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func datePickerChanged(_ sender: UIDatePicker) {
@@ -165,12 +174,12 @@ class TaskDetailViewController: UIViewController {
 extension TaskDetailViewController: TaskDetailViewInput {
     func showTaskDetails() {
         guard let task = task else {
-            dateLabel.text = "Задать дату"
+            dateLabel.text = Date().currentDateToString()
             return
         }
+        dateLabel.text = (task.creationDate ?? Date()).currentDateToString()
         placeholderTitle.text = ""
         placeholderDescription.text = ""
-        dateLabel.text = DateFormatter.localizedString(from: task.creationDate ?? Date(), dateStyle: .short, timeStyle: .none)
         titleTextView.text = task.title
         descriptionTextView.text = task.descriptionText
     }
