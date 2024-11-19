@@ -8,8 +8,10 @@
 import Foundation
 
 extension Date {
-    func currentDateToString() -> String {
-        DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+    func formatDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        return dateFormatter.string(from: self)
     }
 }
 

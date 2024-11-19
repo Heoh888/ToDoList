@@ -16,7 +16,7 @@ final class NetworkService {
 
     func fetchTasks(completion: @escaping (Result<TaskListEntity, Error>) -> Void) {
         guard let url = URL(string: "https://dummyjson.com/todos") else { return }
-        let task = session.dataTask(with: url) { data, response, error in
+        let task = session.dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
                     let decoder = JSONDecoder()

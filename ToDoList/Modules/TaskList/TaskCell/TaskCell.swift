@@ -10,6 +10,9 @@ import UIKit
 class TaskCell: UITableViewCell {
 
     // MARK: - Properties
+
+    var presenter: TaskListPresenterInput!
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -17,13 +20,13 @@ class TaskCell: UITableViewCell {
         label.textColor = .white
         return label
     }()
-    
+
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .lightGray
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
 
@@ -85,7 +88,7 @@ class TaskCell: UITableViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: statusImageView.trailingAnchor, constant: 7),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 7),
-            descriptionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20), // Убедитесь, что есть минимальная высота
+            descriptionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
 
             // Constraints для dateLabel
             dateLabel.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: 0),
@@ -104,6 +107,11 @@ class TaskCell: UITableViewCell {
         guard var task = task else { return }
         task.isCompleted.toggle()
         configure(with: task)
+        StorageManager.shared.updateTask(with: task.id,
+                                         title: task.title,
+                                         descriptionText: task.descriptionText,
+                                         creationDate: task.creationDate,
+                                         isCompleted: task.isCompleted)
     }
 
     // MARK: - Configuration
@@ -113,7 +121,7 @@ class TaskCell: UITableViewCell {
         if let description = task.descriptionText, !description.isEmpty {
             descriptionLabel.text = description
         }
-        
+
         self.task = task
         titleLabel.attributedText = task.isCompleted ?
         NSAttributedString(string: task.title, attributes: [
@@ -130,17 +138,9 @@ class TaskCell: UITableViewCell {
         NSAttributedString(string: task.descriptionText ?? "", attributes: [
             .foregroundColor: UIColor.white
         ])
-        
-        dateLabel.text = task.creationDate?.currentDateToString() ?? "" // Предполагаем, что у вас есть поле для даты создания
+
+        dateLabel.text = task.creationDate == nil ? "" :  task.creationDate?.formatDate()
         statusImageView.tintColor = .yellow
         statusImageView.image = task.isCompleted ? UIImage(named: "isCompleted") : UIImage(named: "notCompleted")
-    }
-
-    private func formatDate(_ date: Date?) -> String {
-        guard let date = date else { return "" }
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy" // Задайте нужный формат
-        return dateFormatter.string(from: date)
     }
 }

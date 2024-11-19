@@ -19,7 +19,7 @@ protocol TaskListRouting {
 
 // Класс, реализующий маршрутизацию задач
 final class TaskListRouter: TaskListRouting {
-  
+
     /// Функция для навигации к контроллеру деталей задачи
     /// - Parameters:
     ///   - view: Входное представление списка задач, откуда будет происходить переход
@@ -29,12 +29,12 @@ final class TaskListRouter: TaskListRouting {
         let taskDetailViewController = TaskDetailViewController()
         // Инициализация презентера для контроллера деталей
         let taskDetailPresenter = TaskDetailPresenter()
-        
+
         // Установка презентера в контроллер деталей задачи
         taskDetailViewController.presenter = taskDetailPresenter
         // Передача выбранной задачи в контроллер деталей
         taskDetailViewController.task = task
-        
+
         // Проверка типа входного представления и переход к контроллеру деталей
         if let sourceViewController = view as? UIViewController {
             sourceViewController.navigationController?.pushViewController(taskDetailViewController, animated: true)

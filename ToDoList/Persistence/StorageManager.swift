@@ -9,40 +9,44 @@ import CoreData
 import UIKit
 
 public final class StorageManager: NSObject {
-    
+
     public static let shared = StorageManager()
-    
+
     private override init() {}
-    
+
     // MARK: - Core Data Stack
     private var appDelegate: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Expected AppDelegate instance")
+        }
+        return appDelegate
     }
-    
+
     private var context: NSManagedObjectContext {
         return appDelegate.persistentContainer.viewContext
     }
-    
+
     // MARK: - CRUD Operations
-    
+
     public func createTask(with id: Int16,
                            title: String,
                            descriptionText: String?,
                            creationDate: Date?,
                            isCompleted: Bool) {
-        DispatchQueue.main.async {
-            guard let taskEntityDescription = NSEntityDescription.entity(forEntityName: "TaskModel", in: self.context) else { return }
-            let task = TaskModel(entity: taskEntityDescription, insertInto: self.context)
-            task.id = id
-            task.title = title
-            task.descriptionText = descriptionText
-            task.creationDate = creationDate
-            task.isCompleted = isCompleted
-            self.appDelegate.commitContext()
+            DispatchQueue.main.async {
+                guard let taskEntityDescription = NSEntityDescription
+                    .entity(forEntityName: "TaskModel", in: self.context) else { return }
+                let task = TaskModel(entity: taskEntityDescription, insertInto: self.context)
+                task.id = id
+                task.title = title
+                task.descriptionText = descriptionText
+                task.creationDate = creationDate
+                task.isCompleted = isCompleted
+                self.appDelegate.commitContext()
+                NotificationCenter.default.post(name: .tasksDidChange, object: nil) // Уведомление о изменении
+            }
         }
-    }
-    
-    
+
     public func fetchTasks() -> [TaskModel] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskModel")
         do {
@@ -51,14 +55,14 @@ public final class StorageManager: NSObject {
             return []
         }
     }
-    
+
     public func updateTask(with id: Int16,
                            title: String,
-                           descriptionText: String,
-                           creationDate: Date,
+                           descriptionText: String?,
+                           creationDate: Date?,
                            isCompleted: Bool) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", id)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskModel")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", NSNumber(value: id))
         do {
             guard let tasks = try context.fetch(fetchRequest) as? [TaskModel],
                   let taskToUpdate = tasks.first else { return }
@@ -71,18 +75,22 @@ public final class StorageManager: NSObject {
             print(error.localizedDescription)
         }
     }
-    
+
     public func deleteTask(with id: Int16) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskModel")
         fetchRequest.predicate = NSPredicate(format: "id = %@", id)
         do {
             guard let photos = try context.fetch(fetchRequest) as? [TaskModel],
                   let photoToDelete = photos.first else { return }
             context.delete(photoToDelete)
             appDelegate.commitContext()
+            NotificationCenter.default.post(name: .tasksDidChange, object: nil)
         } catch {
             print(error.localizedDescription)
         }
     }
 }
 
+extension Notification.Name {
+    static let tasksDidChange = Notification.Name("tasksDidChange")
+}

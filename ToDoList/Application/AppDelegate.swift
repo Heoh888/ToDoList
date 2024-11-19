@@ -11,7 +11,8 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
 
@@ -20,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        return UISceneConfiguration(name: "Default Configuration",
+                                    sessionRole: connectingSceneSession.role)
     }
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         let conteiner = NSPersistentContainer(name: "CoreData")
         conteiner.loadPersistentStores { description, error in
@@ -36,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return conteiner
     }()
-    
+
     func commitContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -49,4 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

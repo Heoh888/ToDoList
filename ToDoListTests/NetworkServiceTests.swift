@@ -19,7 +19,7 @@ class NetworkServiceTests: XCTestCase {
     }
 
     func testFetchTasksReturnsTasks() {
-        let jsonData = """
+        let jsonString = """
         {
             "todos": [
                 {
@@ -33,26 +33,30 @@ class NetworkServiceTests: XCTestCase {
             "skip": 0,
             "limit": 1
         }
-        """.data(using: .utf8)
+        """
 
-        mockSession.mockData = jsonData
+        if let jsonData = jsonString.data(using: .utf8) {
+            mockSession.mockData = jsonData
 
-        let expectation = XCTestExpectation(description: "Fetch tasks")
+            let expectation = XCTestExpectation(description: "Fetch tasks")
 
-        networkService.fetchTasks { result in
-            switch result {
-            case .success(let success):
-                // Здесь выполните проверки на результат
-                XCTAssertEqual(success.total, 1)
-                XCTAssertEqual(success.todos.count, 1)
-                XCTAssertEqual(success.todos.first?.title, "Do something nice for someone you care about")
-                expectation.fulfill()
-            case .failure(let failure):
-                print("")
+            networkService.fetchTasks { result in
+                switch result {
+                case .success(let success):
+                    // Здесь выполните проверки на результат
+                    XCTAssertEqual(success.total, 1)
+                    XCTAssertEqual(success.todos.count, 1)
+                    XCTAssertEqual(success.todos.first?.title, "Do something nice for someone you care about")
+                    expectation.fulfill()
+                case .failure(let failure):
+                    print("")
+                }
             }
-        }
 
-        wait(for: [expectation], timeout: 1.0)
+            wait(for: [expectation], timeout: 1.0)
+        } else {
+            print("Failed to convert string to data.")
+        }
     }
 
     func testFetchTasksHandlesError() {

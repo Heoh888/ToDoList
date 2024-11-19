@@ -11,7 +11,8 @@ class MockURLSession: URLSession {
     var mockData: Data?
     var mockError: Error?
 
-    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    override func dataTask(with url: URL,
+                           completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         if let mockError = mockError {
             completionHandler(nil, nil, mockError) // Возвращаем ошибку, если она есть
         } else {

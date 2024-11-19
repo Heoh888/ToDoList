@@ -11,8 +11,7 @@ import Foundation
 struct TaskListEntity: Codable {
     /// Массив задач, представленных объектами `TaskEntity`.
     let todos: [TaskEntity]
-    
+
     /// Общее количество задач в списке.
     let total: Int
 }
-

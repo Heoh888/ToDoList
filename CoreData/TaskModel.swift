@@ -20,4 +20,4 @@ extension TaskModel {
     @NSManaged public var isCompleted: Bool
 }
 
-extension TaskModel : Identifiable {}
+extension TaskModel: Identifiable {}
