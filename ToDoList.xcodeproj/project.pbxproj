@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		864310E52CEDE7070000F28C /* TaskListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BD52CE6FE8500ED4582 /* TaskListInteractor.swift */; };
 		8670DCD22CECAAE200AC22EB /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670DCD12CECAAE200AC22EB /* ContextMenuViewController.swift */; };
 		86BB6B8E2CE6F79800ED4582 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6B8D2CE6F79800ED4582 /* AppDelegate.swift */; };
 		86BB6B902CE6F79800ED4582 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6B8F2CE6F79800ED4582 /* SceneDelegate.swift */; };
@@ -35,8 +36,7 @@
 		86BB6BED2CE7071700ED4582 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE52CE7036000ED4582 /* TaskEntity.swift */; };
 		86BB6BEE2CE7071700ED4582 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BE52CE7036000ED4582 /* TaskEntity.swift */; };
 		86BB6BF12CE7130A00ED4582 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BF02CE7130A00ED4582 /* TaskCell.swift */; };
-		86BB6BF32CE7275100ED4582 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86BB6BF22CE7275100ED4582 /* Main.storyboard */; };
-		86E4ABCC2CE9D36D0071BCC1 /* Date+UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID.swift */; };
+		86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		864310E12CEDDE420000F28C /* ToDoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToDoList.entitlements; sourceTree = "<group>"; };
 		8670DCD12CECAAE200AC22EB /* ContextMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuViewController.swift; sourceTree = "<group>"; };
 		86BB6B8A2CE6F79800ED4582 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BB6B8D2CE6F79800ED4582 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,8 +84,7 @@
 		86BB6BE52CE7036000ED4582 /* TaskEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
 		86BB6BE72CE7062300ED4582 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		86BB6BF02CE7130A00ED4582 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		86BB6BF22CE7275100ED4582 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		86E4ABCB2CE9D36D0071BCC1 /* Date+UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+UUID.swift"; sourceTree = "<group>"; };
+		86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+UUID+Notification.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		864310E22CEDE4F20000F28C /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				86BB6BA42CE6F79A00ED4582 /* NetworkServiceTests.swift */,
+				86BB6BE72CE7062300ED4582 /* MockURLSession.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		8670DCD02CECAAB400AC22EB /* ContextMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,13 +152,13 @@
 		86BB6B8C2CE6F79800ED4582 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				864310E12CEDDE420000F28C /* ToDoList.entitlements */,
 				86BB6BBD2CE6FA2E00ED4582 /* Application */,
 				86BB6BBE2CE6FA5000ED4582 /* Modules */,
 				86BB6BC12CE6FA7600ED4582 /* Resources */,
 				86BB6BC32CE6FA9A00ED4582 /* Networking */,
 				86BB6BC42CE6FAA300ED4582 /* Persistence */,
 				86BB6BC52CE6FABF00ED4582 /* Extensions */,
-				86BB6BC62CE6FACA00ED4582 /* Supporting Files */,
 				86BB6B9B2CE6F79A00ED4582 /* Info.plist */,
 			);
 			path = ToDoList;
@@ -158,8 +167,7 @@
 		86BB6BA32CE6F79A00ED4582 /* ToDoListTests */ = {
 			isa = PBXGroup;
 			children = (
-				86BB6BA42CE6F79A00ED4582 /* NetworkServiceTests.swift */,
-				86BB6BE72CE7062300ED4582 /* MockURLSession.swift */,
+				864310E22CEDE4F20000F28C /* NetworkService */,
 			);
 			path = ToDoListTests;
 			sourceTree = "<group>";
@@ -167,7 +175,6 @@
 		86BB6BBD2CE6FA2E00ED4582 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				86BB6BF22CE7275100ED4582 /* Main.storyboard */,
 				86BB6B982CE6F79A00ED4582 /* LaunchScreen.storyboard */,
 				86BB6B8F2CE6F79800ED4582 /* SceneDelegate.swift */,
 				86BB6B8D2CE6F79800ED4582 /* AppDelegate.swift */,
@@ -237,16 +244,9 @@
 		86BB6BC52CE6FABF00ED4582 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				86E4ABCB2CE9D36D0071BCC1 /* Date+UUID.swift */,
+				86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		86BB6BC62CE6FACA00ED4582 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		86BB6BCE2CE6FCE200ED4582 /* CoreData */ = {
@@ -371,7 +371,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BB6BF32CE7275100ED4582 /* Main.storyboard in Resources */,
 				86BB6B9A2CE6F79A00ED4582 /* LaunchScreen.storyboard in Resources */,
 				86BB6B972CE6F79A00ED4582 /* Assets.xcassets in Resources */,
 			);
@@ -435,7 +434,7 @@
 				86BB6BE22CE7013A00ED4582 /* TaskDetailRouter.swift in Sources */,
 				86BB6BE42CE7024100ED4582 /* TaskListEntity.swift in Sources */,
 				86BB6BE62CE7036000ED4582 /* TaskEntity.swift in Sources */,
-				86E4ABCC2CE9D36D0071BCC1 /* Date+UUID.swift in Sources */,
+				86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification.swift in Sources */,
 				86BB6BF12CE7130A00ED4582 /* TaskCell.swift in Sources */,
 				86BB6BD22CE6FE1A00ED4582 /* NetworkService.swift in Sources */,
 			);
@@ -450,6 +449,7 @@
 				86BB6BE92CE7063100ED4582 /* NetworkService.swift in Sources */,
 				86BB6BA52CE6F79A00ED4582 /* NetworkServiceTests.swift in Sources */,
 				86BB6BEB2CE7071400ED4582 /* TaskListEntity.swift in Sources */,
+				864310E52CEDE7070000F28C /* TaskListInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +614,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToDoList/ToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RQ87S3853;
@@ -621,7 +622,6 @@
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -642,6 +642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToDoList/ToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RQ87S3853;
@@ -649,7 +650,6 @@
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

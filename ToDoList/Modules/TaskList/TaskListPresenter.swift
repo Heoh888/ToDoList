@@ -14,6 +14,7 @@ protocol TaskListPresenterInput {
     func fetchTasksFromNetwork()
     func navigateToTaskDetail(with task: TaskEntity?)
     func searchTasks(_ text: String)
+    func deleteTask(with id: Int16)
 }
 
 /// Класс `TaskListPresenter` реализует протокол `TaskListPresenterInput`
@@ -37,10 +38,14 @@ class TaskListPresenter: TaskListPresenterInput {
             interactorInstance.presenter = self // Установка ссылке на презентер
         }
     }
-
+    
     /// Функция для получения задач из локального хранилища.
     func fetchTasksFromLocalStorage() {
         interactor.fetchTasksFromLocalStorage() // Передача запроса в интеректор
+    }
+    
+    func deleteTask(with id: Int16) {
+        interactor.deleteTask(with: id)
     }
 
     /// Функция для получения задач из сети.

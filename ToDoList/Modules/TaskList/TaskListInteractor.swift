@@ -11,31 +11,48 @@ protocol TaskListInteractorInput {
     func fetchTasksFromNetwork()
     func fetchTasksFromLocalStorage()
     func searchTasks(_ text: String)
+    func deleteTask(with id: Int16)
 }
 
 /// Класс `TaskListInteractor` реализует логику для работы с задачами, включая загрузку из сети и локального хранилища.
 class TaskListInteractor: TaskListInteractorInput {
 
     var presenter: TaskListPresenterInput?
-    private lazy var networkService: NetworkService = NetworkService()
+    var networkService: NetworkServiceInput?
     private lazy var localStorage: StorageManager = StorageManager.shared
+    private let defaults = UserDefaults.standard
     private let operationQueue = OperationQueue()
+    
+    init(presenter: TaskListPresenterInput? = nil,
+         networkService: NetworkServiceInput = NetworkService()) {
+        self.presenter = presenter
+    }
 
     /// Функция для получения задач из сети.
     func fetchTasksFromNetwork() {
-        DispatchQueue.global(qos: .background).async {
-            self.networkService.fetchTasks { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let taskList):
-                    self.validateTasksUniqueness(taskList: taskList)  // Валидация уникальности задач
-                case .failure(let error):
-                    print("Ошибка \(error.localizedDescription)")  // Логирование ошибки
+        if let firstLaunch = defaults.string(forKey: "firstLaunch") {
+            print(firstLaunch)
+        } else {
+            DispatchQueue.global(qos: .background).async {
+                guard let networkService = self.networkService else { return }
+                networkService.fetchTasks { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let taskList):
+                        defaults.set("The data has already been uploaded", forKey: "firstLaunch")
+                        self.validateTasksUniqueness(taskList: taskList)  // Валидация уникальности задач
+                    case .failure(let error):
+                        print("Ошибка \(error.localizedDescription)")  // Логирование ошибки
+                    }
                 }
             }
         }
     }
-
+    
+    func deleteTask(with id: Int16) {
+        localStorage.deleteTask(with: id)
+    }
+    
     /// Функция для получения задач из локального хранилища.
     func fetchTasksFromLocalStorage() {
         guard let presenter = presenter else { return }
@@ -44,7 +61,7 @@ class TaskListInteractor: TaskListInteractorInput {
         let sortingTasks = self.sortingTasksByDate(result)
         presenter.presentTasks(sortingTasks)  // Передача задач презентеру
     }
-
+    
     /// Функция для сохранения задач.
     /// - Parameter tasks: Массив задач для сохранения.
     func saveTasks(_ tasks: [TaskEntity]) {
@@ -60,7 +77,7 @@ class TaskListInteractor: TaskListInteractorInput {
                                                  creationDate: task.creationDate,
                                                  isCompleted: task.isCompleted)
             }
-
+            
             OperationQueue.main.addOperation {
                 guard let presenter = self.presenter else { return }
                 let tasks = tasks + tasksFromLocalStorage
@@ -70,7 +87,7 @@ class TaskListInteractor: TaskListInteractorInput {
         }
         operationQueue.addOperation(operation)  // Добавление операции в очередь
     }
-
+    
     func searchTasks(_ text: String) {
         let localTasks = localStorage.fetchTasks()  // Получение локальных задач
         let tasksFromLocalStorage = convertData(data: localTasks)  // Конвертация локальных задач
@@ -85,22 +102,22 @@ class TaskListInteractor: TaskListInteractorInput {
         let sortingTasks = sortingTasksByDate(text.isEmpty ? tasksFromLocalStorage : tasks)
         presenter.presentTasks(sortingTasks)
     }
-
+    
     /// Функция для валидации уникальности задач в списке задач на основе локальных данных.
     /// - Parameter taskList: Объект типа `TaskListEntity`, содержащий список задач для валидации.
     private func validateTasksUniqueness(taskList: TaskListEntity) {
         let localTasks = localStorage.fetchTasks()  // Получение локальных задач
         let tasksFromLocalStorage = convertData(data: localTasks)  // Конвертация локальных задач
-
+        
         // Создаем множество для хранения id задач из локального хранилища
         let existingTaskIds = Set(tasksFromLocalStorage.map { $0.id })
-
+        
         // Фильтруем задачи из taskList.todos, чтобы оставить только уникальные
         let uniqueTasks = taskList.todos.filter { !existingTaskIds.contains($0.id) }
-
+        
         saveTasks(uniqueTasks)
     }
-
+    
     /// Конвертация данных модели задач.
     /// - Parameter data: Массив задач для конвертации.
     /// - Returns: Массив сущностей задач.
@@ -111,7 +128,7 @@ class TaskListInteractor: TaskListInteractorInput {
                               creationDate: $0.creationDate,
                               isCompleted: $0.isCompleted) }
     }
-
+    
     private func sortingTasksByDate(_ tasks: [TaskEntity]) -> [TaskEntity] {
         tasks.sorted {
             let date1 = $0.creationDate ?? Date.distantPast

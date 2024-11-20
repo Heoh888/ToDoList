@@ -78,19 +78,15 @@ public final class StorageManager: NSObject {
 
     public func deleteTask(with id: Int16) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskModel")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id = %@", NSNumber(value: id))
         do {
-            guard let photos = try context.fetch(fetchRequest) as? [TaskModel],
-                  let photoToDelete = photos.first else { return }
-            context.delete(photoToDelete)
+            guard let tasks = try context.fetch(fetchRequest) as? [TaskModel],
+                  let taskToDelete = tasks.first else { return }
+            context.delete(taskToDelete)
             appDelegate.commitContext()
             NotificationCenter.default.post(name: .tasksDidChange, object: nil)
         } catch {
             print(error.localizedDescription)
         }
     }
-}
-
-extension Notification.Name {
-    static let tasksDidChange = Notification.Name("tasksDidChange")
 }

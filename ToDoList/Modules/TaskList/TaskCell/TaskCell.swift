@@ -10,7 +10,6 @@ import UIKit
 class TaskCell: UITableViewCell {
 
     // MARK: - Properties
-
     var presenter: TaskListPresenterInput!
 
     private let titleLabel: UILabel = {
@@ -71,6 +70,11 @@ class TaskCell: UITableViewCell {
         contentView.backgroundColor = .black
     }
 
+    private var descriptionLabelTopConstraint: NSLayoutConstraint!
+    private var dateLabelTopConstraint: NSLayoutConstraint! // Общий constraint для dateLabel
+    private var dateLabelTopConstraintWithDescription: NSLayoutConstraint!
+    private var dateLabelTopConstraintWithTitle: NSLayoutConstraint!
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             // Constraints для statusImageView
@@ -116,7 +120,7 @@ class TaskCell: UITableViewCell {
 
     // MARK: - Configuration
     func configure(with task: TaskEntity?) {
-        guard var task = task else { return }
+        guard let task = task else { return }
 
         if let description = task.descriptionText, !description.isEmpty {
             descriptionLabel.text = description

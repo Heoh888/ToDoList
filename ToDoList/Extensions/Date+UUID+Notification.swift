@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     func formatDate() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: self)
     }
 }
@@ -21,5 +21,8 @@ extension UUID {
         let uint16Value = (UInt16(uuidBytes.0) << 8) | UInt16(uuidBytes.1)
         return Int16(truncatingIfNeeded: uint16Value)
     }
+}
 
+extension Notification.Name {
+    static let tasksDidChange = Notification.Name("tasksDidChange")
 }

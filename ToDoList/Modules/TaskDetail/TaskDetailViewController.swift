@@ -35,7 +35,6 @@ class TaskDetailViewController: UIViewController {
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.backgroundColor = .clear
         picker.tintColor = .black
-        picker.accessibilityIgnoresInvertColors = false
         return picker
     }()
 
@@ -64,7 +63,7 @@ class TaskDetailViewController: UIViewController {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        label.textColor = .white
+        label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -104,7 +103,6 @@ class TaskDetailViewController: UIViewController {
         super.viewDidLoad()
         titleTextView.delegate = self
         descriptionTextView.delegate = self
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
         setupUI()
         showTaskDetails()
     }
@@ -121,6 +119,7 @@ class TaskDetailViewController: UIViewController {
         view.addSubview(dateLabel)
         view.addSubview(descriptionTextView)
         view.addSubview(placeholderDescription)
+        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
         setupConstraints()
     }
 
@@ -182,10 +181,7 @@ class TaskDetailViewController: UIViewController {
 
     /// Обработка изменения даты в datePicker.
     @objc private func datePickerChanged(_ sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short // Установите нужный стиль
-        dateLabel.text = formatter.string(from: sender.date)
-
+        dateLabel.text = sender.date.formatDate()
         // Проверка состояния кнопки сохранения
         checkSaveButtonState()
     }

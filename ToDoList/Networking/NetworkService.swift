@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class NetworkService {
+protocol NetworkServiceInput {
+    func fetchTasks(completion: @escaping (Result<TaskListEntity, Error>) -> Void)
+}
+
+final class NetworkService: NetworkServiceInput {
     private let session: URLSession
 
     init(session: URLSession = .shared) {
