@@ -34,6 +34,9 @@ class TaskListPresenter: TaskListPresenterInput {
     /// - view: Представление для отображения задач.
     /// - interactor: Интерфейс для взаимодействия с данными.
     init(view: TaskListViewInput? = nil, interactor: TaskListInteractorInput? = TaskListInteractor()) {
+        if let interactorInstance = interactor as? TaskListInteractor {
+            interactorInstance.presenter = self // Установка ссылке на презентер
+        }
         self.view = view
         self.interactor = interactor
     }

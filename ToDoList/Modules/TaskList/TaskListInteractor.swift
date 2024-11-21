@@ -84,9 +84,7 @@ class TaskListInteractor: TaskListInteractorInput {
         let localTasks = localStorage.fetchTasks() // Получаем существующие задачи
         let tasksFromLocalStorage = self.convertData(data: localTasks) // Конвертируем существующие задачи
         let operation = BlockOperation { [weak self] in
-            print("ccewcewcewcwc")
             guard let self = self else { return }
-            print("32223232")
             for task in tasks {
                 localStorage.createTask(
                     with: task.id,
@@ -100,7 +98,6 @@ class TaskListInteractor: TaskListInteractorInput {
             OperationQueue.main.addOperation {
                 guard let presenter = self.presenter else { return }
                 let allTasks = tasks + tasksFromLocalStorage // Объединяем новые и существующие задачи
-                print(allTasks)
                 presenter.presentTasks(allTasks) // Отправляем объединенные задачи презентеру
             }
         }
