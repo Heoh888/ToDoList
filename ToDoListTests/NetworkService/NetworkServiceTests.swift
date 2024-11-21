@@ -4,20 +4,26 @@
 //
 //  Created by Алексей Ходаков on 15.11.2024.
 //
-
 import XCTest
 @testable import ToDoList
 
+/// Класс для тестирования сетевых услуг. Наследуется от `XCTestCase`.
 class NetworkServiceTests: XCTestCase {
+    // Свойство для сервиса сетевого взаимодействия
     var networkService: NetworkService!
-    var mockSession: MockURLSession!
-
+    // Провайдер для имитации URL сессий
+    var mockURLSession: MockURLSession!
+    
+    /// Метод, который запускается перед выполнением каждого теста.
     override func setUp() {
         super.setUp()
-        mockSession = MockURLSession()
-        networkService = NetworkService(session: mockSession)
+        // Инициализация имитированной сессии
+        mockURLSession = MockURLSession()
+        // Инициализация сервиса с использованием имитированной сессии
+        networkService = NetworkService(session: mockURLSession)
     }
 
+    /// Тест, который проверяет, что метод `fetchTasks` возвращает задачи.
     func testFetchTasksReturnsTasks() {
         let jsonString = """
         {
@@ -34,45 +40,57 @@ class NetworkServiceTests: XCTestCase {
             "limit": 1
         }
         """
-
+        
+        // Преобразование строки JSON в данные
         if let jsonData = jsonString.data(using: .utf8) {
-            mockSession.mockData = jsonData
-
-            let expectation = XCTestExpectation(description: "Fetch tasks")
-
+            // Присвоение данных для имитированной сессии
+            mockURLSession.mockData = jsonData
+            
+            // Ожидание завершения асинхронной работы
+            let fetchExpectation = XCTestExpectation(description: "Fetch tasks")
+            
+            // Вызов метода для получения задач
             networkService.fetchTasks { result in
                 switch result {
-                case .success(let success):
-                    // Здесь выполните проверки на результат
-                    XCTAssertEqual(success.total, 1)
-                    XCTAssertEqual(success.todos.count, 1)
-                    XCTAssertEqual(success.todos.first?.title, "Do something nice for someone you care about")
-                    expectation.fulfill()
-                case .failure(let failure):
-                    print(failure)
+                case .success(let fetchedTasks):
+                    // Проверка полученных данных
+                    XCTAssertEqual(fetchedTasks.total, 1)
+                    XCTAssertEqual(fetchedTasks.todos.count, 1)
+                    XCTAssertEqual(fetchedTasks.todos.first?.title, "Do something nice for someone you care about")
+                    fetchExpectation.fulfill()
+                case .failure(let error):
+                    print(error)
                 }
             }
-
-            wait(for: [expectation], timeout: 1.0)
+            
+            // Ожидание завершения асинхронного теста
+            wait(for: [fetchExpectation], timeout: 1.0)
         } else {
-            print("Failed to convert string to data.")
+            print("Ошибка при преобразовании строки в данные.")
         }
     }
 
+    /// Тест, который проверяет, как метод `fetchTasks` обрабатывает ошибки.
     func testFetchTasksHandlesError() {
-        mockSession.mockError = NSError(domain: "", code: 404, userInfo: nil)
+        // Присвоение имитированной ошибки для сессии
+        mockURLSession.mockError = NSError(domain: "", code: 404, userInfo: nil)
 
-        let expectation = XCTestExpectation(description: "Handle error gracefully")
+        // Ожидание завершения асинхронной работы
+        let errorExpectation = XCTestExpectation(description: "Handle error gracefully")
 
+        // Вызов метода для получения задач
         networkService.fetchTasks { result in
             switch result {
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                XCTAssertTrue(!failure.localizedDescription.isEmpty, "The line should not be empty")
-                expectation.fulfill()
+            case .success(let fetchedTasks):
+                print(fetchedTasks)
+            case .failure(let error):
+                // Проверка, что описание ошибки не пустое
+                XCTAssertTrue(!error.localizedDescription.isEmpty, "Описание ошибки не должно быть пустым")
+                errorExpectation.fulfill()
             }
         }
-        wait(for: [expectation], timeout: 1.0)
+        
+        // Ожидание завершения асинхронного теста
+        wait(for: [errorExpectation], timeout: 1.0)
     }
 }

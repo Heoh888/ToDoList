@@ -7,11 +7,14 @@
 
 import UIKit
 
+/// Класс `TaskCell` представляет ячейку для отображения задачи в списке задач.
 class TaskCell: UITableViewCell {
 
-    // MARK: - Properties
+    // MARK: - Свойства
+    /// Презентер для управления данными задач
     var presenter: TaskListPresenterInput!
 
+    /// Метка для отображения заголовка задачи
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,6 +23,7 @@ class TaskCell: UITableViewCell {
         return label
     }()
 
+    /// Метка для отображения описания задачи
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,6 +33,7 @@ class TaskCell: UITableViewCell {
         return label
     }()
 
+    /// Метка для отображения даты создания задачи
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +42,7 @@ class TaskCell: UITableViewCell {
         return label
     }()
 
+    /// Изображение для статуса задачи
     private let statusImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -44,10 +50,10 @@ class TaskCell: UITableViewCell {
         return imageView
     }()
 
-    // MARK: - Properties
+    /// Модель задачи, которую отображает ячейка
     var task: TaskEntity?
 
-    // MARK: - Initializers
+    // MARK: - Инициализация
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -58,6 +64,7 @@ class TaskCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Настройка пользовательского интерфейса ячейки
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
@@ -70,55 +77,61 @@ class TaskCell: UITableViewCell {
         contentView.backgroundColor = .black
     }
 
+    // MARK: - Constraint переменные
     private var descriptionLabelTopConstraint: NSLayoutConstraint!
-    private var dateLabelTopConstraint: NSLayoutConstraint! // Общий constraint для dateLabel
+    private var dateLabelTopConstraint: NSLayoutConstraint!
     private var dateLabelTopConstraintWithDescription: NSLayoutConstraint!
     private var dateLabelTopConstraintWithTitle: NSLayoutConstraint!
 
+    /// Настройка ограничений для элементов интерфейса
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            // Constraints для statusImageView
+            // Ограничения для statusImageView
             statusImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             statusImageView.centerYAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
             statusImageView.widthAnchor.constraint(equalToConstant: 24),
             statusImageView.heightAnchor.constraint(equalToConstant: 24),
 
-            // Constraints для titleLabel
+            // Ограничения для titleLabel
             titleLabel.leadingAnchor.constraint(equalTo: statusImageView.trailingAnchor, constant: 7),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
 
-            // Constraints для descriptionLabel
+            // Ограничения для descriptionLabel
             descriptionLabel.leadingAnchor.constraint(equalTo: statusImageView.trailingAnchor, constant: 7),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 7),
             descriptionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
 
-            // Constraints для dateLabel
+            // Ограничения для dateLabel
             dateLabel.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: 0),
             dateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 
+    /// Добавить жест на статус задачи
     private func addGestureToStatus() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(statusTask))
         statusImageView.isUserInteractionEnabled = true
         statusImageView.addGestureRecognizer(tapGesture)
     }
 
+    /// Обработка касания статуса задачи
     @objc private func statusTask() {
         guard var task = task else { return }
-        task.isCompleted.toggle()
+        task.isCompleted.toggle() // Переключение состояния завершенности задачи
         configure(with: task)
         StorageManager.shared.updateTask(with: task.id,
-                                         title: task.title,
-                                         descriptionText: task.descriptionText,
-                                         creationDate: task.creationDate,
-                                         isCompleted: task.isCompleted)
+                                          title: task.title,
+                                          descriptionText: task.descriptionText,
+                                          creationDate: task.creationDate,
+                                          isCompleted: task.isCompleted)
     }
 
-    // MARK: - Configuration
+    // MARK: - Конфигурация
+    /// Конфигурация ячейки с данными задачи
+    /// - Parameter task: Задача, с которой необходимо сконфигурировать ячейку
     func configure(with task: TaskEntity?) {
         guard let task = task else { return }
 

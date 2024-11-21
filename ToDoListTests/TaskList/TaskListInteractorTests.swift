@@ -8,51 +8,52 @@
 import XCTest
 @testable import ToDoList
 
+/// Класс тестов для `TaskListInteractor`, который обеспечивает проверку взаимодействий с данными задач.
 class TaskListInteractorTests: XCTestCase {
     
-    var mockStorageManager: MockStorageManager!
-    var mockNetworkService: MockNetworkService!
+    var mockTaskStorageManager: MockStorageManager!
+    var mockTaskNetworkService: MockNetworkService!
     var interactor: TaskListInteractor!
     var presenter: TaskListPresenter!
-    var view: MockTaskListViewController!
-    let defaults = UserDefaults.standard
+    var mockTaskListView: MockTaskListViewController!
+    let userDefaults = UserDefaults.standard
     
     override func setUp() {
-        defaults.set("The data has already been uploaded", forKey: "firstLaunch")
-        mockStorageManager = MockStorageManager()
-        mockNetworkService = MockNetworkService()
-        view = MockTaskListViewController()
-        interactor = TaskListInteractor(networkService: mockNetworkService, localStorage: mockStorageManager)
-        presenter = TaskListPresenter(view: view, interactor: interactor)
         super.setUp()
+        userDefaults.set("The data has already been uploaded", forKey: "firstLaunch")
+        mockTaskStorageManager = MockStorageManager()
+        mockTaskNetworkService = MockNetworkService()
+        mockTaskListView = MockTaskListViewController()
+        interactor = TaskListInteractor(networkService: mockTaskNetworkService, localStorage: mockTaskStorageManager)
+        presenter = TaskListPresenter(view: mockTaskListView, interactor: interactor)
     }
     
     override func tearDown() {
-        mockStorageManager = nil
+        mockTaskStorageManager = nil
         interactor = nil
         super.tearDown()
     }
     
+    /// Тестирует функцию удаления задачи.
     func testDeleteTask() {
         interactor.deleteTask(with: 1)
-        XCTAssertEqual(interactor.localStorage?.tasks.count, 3)
+        XCTAssertEqual(interactor.localStorage?.tasks.count, 3, "Количество задач после удаления должно быть равно 3")
     }
     
+    /// Тестирует функцию преобразования входных данных в сущности задач.
     func testConvertData() {
+        let inputTaskData: [TaskInput] = SupportingData.shared.taskModel
+        let expectedTaskEntities: [TaskEntity] = SupportingData.shared.taskEntity
 
-        let inputData: [TaskInput] = SupportingData.shared.taskModel
+        let outputTaskData = interactor.convertData(data: inputTaskData)
+
+        XCTAssertEqual(outputTaskData.count, expectedTaskEntities.count, "Количество выходных данных должно совпадать с ожидаемым количеством")
         
-        let expectedOutput: [TaskEntity] = SupportingData.shared.taskEntity
-
-        let outputData = interactor.convertData(data: inputData)
-
-        XCTAssertEqual(outputData.count, expectedOutput.count, "Output count should match expected count")
-        
-        for (index, entity) in outputData.enumerated() {
-            XCTAssertEqual(entity.id, expectedOutput[index].id, "IDs should match")
-            XCTAssertEqual(entity.title, expectedOutput[index].title, "Titles should match")
-            XCTAssertEqual(entity.descriptionText, expectedOutput[index].descriptionText, "Description texts should match")
-            XCTAssertEqual(entity.isCompleted, expectedOutput[index].isCompleted, "Completion status should match")
+        for (index, taskEntity) in outputTaskData.enumerated() {
+            XCTAssertEqual(taskEntity.id, expectedTaskEntities[index].id, "Идентификаторы должны совпадать")
+            XCTAssertEqual(taskEntity.title, expectedTaskEntities[index].title, "Названия должны совпадать")
+            XCTAssertEqual(taskEntity.descriptionText, expectedTaskEntities[index].descriptionText, "Тексты описаний должны совпадать")
+            XCTAssertEqual(taskEntity.isCompleted, expectedTaskEntities[index].isCompleted, "Статусы завершенности должны совпадать")
         }
     }
 }

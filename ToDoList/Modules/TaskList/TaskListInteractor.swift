@@ -4,122 +4,128 @@
 //
 //  Created by Алексей Ходаков on 15.11.2024.
 //
-
 import Foundation
 
+/// Протокол `TaskListInteractorInput` описывает интерфейс для взаимодействия с задачами.
+/// Он определяет обязательные методы для получения задач из сети и локального хранилища,
+/// а также для удаления конкретной задачи по идентификатору.
 protocol TaskListInteractorInput {
-    var networkService: NetworkServiceInput? {get set}
-    func fetchTasksFromNetwork()
-    func fetchTasksFromLocalStorage()
-    func deleteTask(with id: Int16)
+    var networkService: NetworkServiceInput? { get set } // Сервис для работы с сетью
+    func fetchTasksFromNetwork() // Получение задач из сети
+    func fetchTasksFromLocalStorage() // Получение задач из локального хранилища
+    func deleteTask(with id: Int16) // Удаление задачи по идентификатору
 }
 
-/// Класс `TaskListInteractor` реализует логику для работы с задачами, включая загрузку из сети и локального хранилища.
+/// Класс `TaskListInteractor` реализует протокол `TaskListInteractorInput`
+/// и управляет получением, сохранением и удалением задач.
 class TaskListInteractor: TaskListInteractorInput {
-
-    var presenter: TaskListPresenterInput?
-    var networkService: NetworkServiceInput?
-    var localStorage: StorageManagerInput?
-    private let defaults = UserDefaults.standard
-    private let operationQueue = OperationQueue()
     
+    var presenter: TaskListPresenterInput? // Презентер для отправки данных
+    var networkService: NetworkServiceInput? // Сервис для работы с сетью
+    var localStorage: StorageManagerInput? // Локальное хранилище для задач
+    private let userDefaults = UserDefaults.standard // Стандартное хранилище пользовательских данных
+    private let operationQueue = OperationQueue() // Очередь операций для обработки задач
+     
+    /// Инициализирует `TaskListInteractor`.
+    /// - Parameters:
+    ///   - presenter: Презентер для отображения задач.
+    ///   - networkService: Сервис для работы с сетью, по умолчанию создается новый экземпляр.
+    ///   - localStorage: Локальное хранилище задач, по умолчанию используется общий экземпляр.
     init(presenter: TaskListPresenterInput? = nil,
-         networkService: NetworkServiceInput? = NetworkService(), localStorage: StorageManagerInput? = StorageManager.shared) {
+         networkService: NetworkServiceInput? = NetworkService(),
+         localStorage: StorageManagerInput? = StorageManager.shared) {
         self.networkService = networkService
         self.presenter = presenter
         self.localStorage = localStorage
     }
 
-    /// Функция для получения задач из сети.
+    /// Получает задачи из сети.
     func fetchTasksFromNetwork() {
-        if let firstLaunch = defaults.string(forKey: "firstLaunch") {
+        // Проверяем, был ли уже загружен первый раз данные
+        if let firstLaunch = userDefaults.string(forKey: "firstLaunch") {
             print(firstLaunch)
         } else {
+            // Запускаем асинхронный запрос на получение задач
             DispatchQueue.global(qos: .background).async {
                 guard let networkService = self.networkService else { return }
                 networkService.fetchTasks { [weak self] result in
                     guard let self = self else { return }
                     switch result {
                     case .success(let taskList):
-                        defaults.set("The data has already been uploaded", forKey: "firstLaunch")
-                        self.validateTasksUniqueness(taskList: taskList)  // Валидация уникальности задач
+                        self.userDefaults.set("Данные были успешно загружены", forKey: "firstLaunch") // Логирование успешного запуска
+                        self.validateTasksUniqueness(taskList: taskList) // Валидация уникальности задач
                     case .failure(let error):
-                        print("Ошибка \(error.localizedDescription)")  // Логирование ошибки
+                        print("Ошибка \(error.localizedDescription)") // Логирование ошибки
                     }
                 }
             }
         }
     }
-    
+     
+    /// Удаляет задачу по идентификатору.
+    /// - Parameter id: Идентификатор задачи, которую необходимо удалить.
     func deleteTask(with id: Int16) {
         guard let localStorage = localStorage else { return }
-        localStorage.deleteTask(with: id)
+        localStorage.deleteTask(with: id) // Удаляем задачу из локального хранилища
     }
-    
-    /// Функция для получения задач из локального хранилища.
+     
+    /// Получает задачи из локального хранилища и передает их презентеру.
     func fetchTasksFromLocalStorage() {
-        guard let presenter = presenter else { return }
-        guard let localStorage = localStorage else { return }
-        let localTasks = localStorage.fetchTasks()  // Получение задач из локального хранилища
-        let result = convertData(data: localTasks)  // Конвертация данных
-        presenter.presentTasks(result)  // Передача задач презентеру
+        guard let presenter = presenter, let localStorage = localStorage else { return }
+        let localTasks = localStorage.fetchTasks() // Получаем задачи из локального хранилища
+        let result = convertData(data: localTasks) // Конвертируем данные
+        presenter.presentTasks(result) // Отправляем задачи презентеру
     }
-    
-    /// Функция для сохранения задач.
+
+    /// Сохраняет задачи в локальном хранилище.
     /// - Parameter tasks: Массив задач для сохранения.
     func saveTasks(_ tasks: [TaskEntity]) {
         guard let localStorage = localStorage else { return }
-        let localTasks = localStorage.fetchTasks()  // Получение локальных задач
-        let tasksFromLocalStorage = self.convertData(data: localTasks)  // Конвертация локальных задач
+        let localTasks = localStorage.fetchTasks() // Получаем существующие задачи
+        let tasksFromLocalStorage = self.convertData(data: localTasks) // Конвертируем существующие задачи
         let operation = BlockOperation { [weak self] in
+            print("ccewcewcewcwc")
             guard let self = self else { return }
+            print("32223232")
             for task in tasks {
-                // Сохранение каждой задачи
-                localStorage.createTask(with: task.id,
-                                                 title: task.title,
-                                                 descriptionText: task.descriptionText,
-                                                 creationDate: task.creationDate,
-                                                 isCompleted: task.isCompleted)
+                localStorage.createTask(
+                    with: task.id,
+                    title: task.title,
+                    descriptionText: task.descriptionText,
+                    creationDate: task.creationDate,
+                    isCompleted: task.isCompleted
+                ) // Сохраняем каждую задачу в локальное хранилище
             }
             
-            guard let presenter = self.presenter else { return }
-            let tasks = tasks + tasksFromLocalStorage
-            presenter.presentTasks(tasks)  // Передача сохраненных задач презентеру
-            
-//            OperationQueue.main.addOperation {
-//                guard let presenter = self.presenter else { return }
-//                let tasks = tasks + tasksFromLocalStorage
-//                let sortingTasks = self.sortingTasksByDate(tasks)
-//                presenter.presentTasks(sortingTasks)  // Передача сохраненных задач презентеру
-//            }
+            OperationQueue.main.addOperation {
+                guard let presenter = self.presenter else { return }
+                let allTasks = tasks + tasksFromLocalStorage // Объединяем новые и существующие задачи
+                print(allTasks)
+                presenter.presentTasks(allTasks) // Отправляем объединенные задачи презентеру
+            }
         }
-        operationQueue.addOperation(operation)  // Добавление операции в очередь
+        operationQueue.addOperation(operation) // Добавляем операцию в очередь
     }
-    
-    /// Функция для валидации уникальности задач в списке задач на основе локальных данных.
-    /// - Parameter taskList: Объект типа `TaskListEntity`, содержащий список задач для валидации.
+
+    /// Проверяет уникальность задач из списка переданных задач.
+    /// - Parameter taskList: Список задач для проверки уникальности.
     private func validateTasksUniqueness(taskList: TaskListEntity) {
         guard let localStorage = localStorage else { return }
-        let localTasks = localStorage.fetchTasks()  // Получение локальных задач
-        let tasksFromLocalStorage = convertData(data: localTasks)  // Конвертация локальных задач
-        
-        // Создаем множество для хранения id задач из локального хранилища
-        let existingTaskIds = Set(tasksFromLocalStorage.map { $0.id })
-        
-        // Фильтруем задачи из taskList.todos, чтобы оставить только уникальные
-        let uniqueTasks = taskList.todos.filter { !existingTaskIds.contains($0.id) }
-        
-        saveTasks(uniqueTasks)
+        let localTasks = localStorage.fetchTasks()
+        let tasksFromLocalStorage = convertData(data: localTasks)
+        let existingTaskIds = Set(tasksFromLocalStorage.map { $0.id }) // Получаем уникальные идентификаторы существующих задач
+        let uniqueTasks = taskList.todos.filter { !existingTaskIds.contains($0.id) } // Фильтруем уникальные задачи
+        saveTasks(uniqueTasks) // Сохраняем уникальные задачи
     }
-    
-    /// Конвертация данных модели задач.
-    /// - Parameter data: Массив задач для конвертации.
+
+    /// Конвертирует данные входных задач в задачи сущности.
+    /// - Parameter data: Массив входных задач.
     /// - Returns: Массив сущностей задач.
     internal func convertData(data: [TaskInput]) -> [TaskEntity] {
-        data.map { TaskEntity(id: $0.id,
-                              title: $0.title,
-                              descriptionText: $0.descriptionText,
-                              creationDate: $0.creationDate,
-                              isCompleted: $0.isCompleted) }
+        return data.map { TaskEntity(id: $0.id,
+                                      title: $0.title,
+                                      descriptionText: $0.descriptionText,
+                                      creationDate: $0.creationDate,
+                                      isCompleted: $0.isCompleted) }
     }
 }
