@@ -8,9 +8,26 @@
 import CoreData
 import UIKit
 
-public final class StorageManager: NSObject {
+protocol StorageManagerInput {
+    var tasks: [TaskInput] { get set}
+    func fetchTasks() -> [TaskInput]
+    func updateTask(with id: Int16,
+                           title: String,
+                           descriptionText: String?,
+                           creationDate: Date?,
+                           isCompleted: Bool)
+    func createTask(with id: Int16,
+                           title: String,
+                           descriptionText: String?,
+                           creationDate: Date?,
+                           isCompleted: Bool)
+    func deleteTask(with id: Int16)
+}
+
+public final class StorageManager: NSObject, StorageManagerInput {
 
     public static let shared = StorageManager()
+    var tasks: [TaskInput] = []
 
     private override init() {}
 
@@ -47,7 +64,7 @@ public final class StorageManager: NSObject {
             }
         }
 
-    public func fetchTasks() -> [TaskModel] {
+    func fetchTasks() -> [TaskInput] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskModel")
         do {
             return (try context.fetch(fetchRequest) as? [TaskModel]) ?? []

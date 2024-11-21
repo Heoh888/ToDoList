@@ -8,9 +8,9 @@
 import Foundation
 
 protocol TaskListInteractorInput {
+    var networkService: NetworkServiceInput? {get set}
     func fetchTasksFromNetwork()
     func fetchTasksFromLocalStorage()
-    func searchTasks(_ text: String)
     func deleteTask(with id: Int16)
 }
 
@@ -19,13 +19,15 @@ class TaskListInteractor: TaskListInteractorInput {
 
     var presenter: TaskListPresenterInput?
     var networkService: NetworkServiceInput?
-    private lazy var localStorage: StorageManager = StorageManager.shared
+    var localStorage: StorageManagerInput?
     private let defaults = UserDefaults.standard
     private let operationQueue = OperationQueue()
     
     init(presenter: TaskListPresenterInput? = nil,
-         networkService: NetworkServiceInput = NetworkService()) {
+         networkService: NetworkServiceInput? = NetworkService(), localStorage: StorageManagerInput? = StorageManager.shared) {
+        self.networkService = networkService
         self.presenter = presenter
+        self.localStorage = localStorage
     }
 
     /// Функция для получения задач из сети.
@@ -50,62 +52,54 @@ class TaskListInteractor: TaskListInteractorInput {
     }
     
     func deleteTask(with id: Int16) {
+        guard let localStorage = localStorage else { return }
         localStorage.deleteTask(with: id)
     }
     
     /// Функция для получения задач из локального хранилища.
     func fetchTasksFromLocalStorage() {
         guard let presenter = presenter else { return }
+        guard let localStorage = localStorage else { return }
         let localTasks = localStorage.fetchTasks()  // Получение задач из локального хранилища
         let result = convertData(data: localTasks)  // Конвертация данных
-        let sortingTasks = self.sortingTasksByDate(result)
-        presenter.presentTasks(sortingTasks)  // Передача задач презентеру
+        presenter.presentTasks(result)  // Передача задач презентеру
     }
     
     /// Функция для сохранения задач.
     /// - Parameter tasks: Массив задач для сохранения.
     func saveTasks(_ tasks: [TaskEntity]) {
-        let localTasks = self.localStorage.fetchTasks()  // Получение локальных задач
+        guard let localStorage = localStorage else { return }
+        let localTasks = localStorage.fetchTasks()  // Получение локальных задач
         let tasksFromLocalStorage = self.convertData(data: localTasks)  // Конвертация локальных задач
         let operation = BlockOperation { [weak self] in
             guard let self = self else { return }
             for task in tasks {
                 // Сохранение каждой задачи
-                StorageManager.shared.createTask(with: task.id,
+                localStorage.createTask(with: task.id,
                                                  title: task.title,
                                                  descriptionText: task.descriptionText,
                                                  creationDate: task.creationDate,
                                                  isCompleted: task.isCompleted)
             }
             
-            OperationQueue.main.addOperation {
-                guard let presenter = self.presenter else { return }
-                let tasks = tasks + tasksFromLocalStorage
-                let sortingTasks = self.sortingTasksByDate(tasks)
-                presenter.presentTasks(sortingTasks)  // Передача сохраненных задач презентеру
-            }
+            guard let presenter = self.presenter else { return }
+            let tasks = tasks + tasksFromLocalStorage
+            presenter.presentTasks(tasks)  // Передача сохраненных задач презентеру
+            
+//            OperationQueue.main.addOperation {
+//                guard let presenter = self.presenter else { return }
+//                let tasks = tasks + tasksFromLocalStorage
+//                let sortingTasks = self.sortingTasksByDate(tasks)
+//                presenter.presentTasks(sortingTasks)  // Передача сохраненных задач презентеру
+//            }
         }
         operationQueue.addOperation(operation)  // Добавление операции в очередь
-    }
-    
-    func searchTasks(_ text: String) {
-        let localTasks = localStorage.fetchTasks()  // Получение локальных задач
-        let tasksFromLocalStorage = convertData(data: localTasks)  // Конвертация локальных задач
-        let searchLowercased = text.lowercased()
-        let result = tasksFromLocalStorage.filter { task in
-            // Проверяем, содержится ли `searchText` в `title` или `descriptionText`
-            task.title.lowercased().contains(searchLowercased) ||
-            (task.descriptionText?.lowercased().contains(searchLowercased) ?? false)
-        }
-        guard let presenter = self.presenter else { return }
-        let tasks = result.isEmpty ? [] : result
-        let sortingTasks = sortingTasksByDate(text.isEmpty ? tasksFromLocalStorage : tasks)
-        presenter.presentTasks(sortingTasks)
     }
     
     /// Функция для валидации уникальности задач в списке задач на основе локальных данных.
     /// - Parameter taskList: Объект типа `TaskListEntity`, содержащий список задач для валидации.
     private func validateTasksUniqueness(taskList: TaskListEntity) {
+        guard let localStorage = localStorage else { return }
         let localTasks = localStorage.fetchTasks()  // Получение локальных задач
         let tasksFromLocalStorage = convertData(data: localTasks)  // Конвертация локальных задач
         
@@ -121,19 +115,11 @@ class TaskListInteractor: TaskListInteractorInput {
     /// Конвертация данных модели задач.
     /// - Parameter data: Массив задач для конвертации.
     /// - Returns: Массив сущностей задач.
-    private func convertData(data: [TaskModel]) -> [TaskEntity] {
+    internal func convertData(data: [TaskInput]) -> [TaskEntity] {
         data.map { TaskEntity(id: $0.id,
                               title: $0.title,
                               descriptionText: $0.descriptionText,
                               creationDate: $0.creationDate,
                               isCompleted: $0.isCompleted) }
-    }
-    
-    private func sortingTasksByDate(_ tasks: [TaskEntity]) -> [TaskEntity] {
-        tasks.sorted {
-            let date1 = $0.creationDate ?? Date.distantPast
-            let date2 = $1.creationDate ?? Date.distantPast
-            return date1 > date2
-        }
     }
 }

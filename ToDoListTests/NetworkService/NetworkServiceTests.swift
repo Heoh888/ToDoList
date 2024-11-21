@@ -49,7 +49,7 @@ class NetworkServiceTests: XCTestCase {
                     XCTAssertEqual(success.todos.first?.title, "Do something nice for someone you care about")
                     expectation.fulfill()
                 case .failure(let failure):
-                    print("")
+                    print(failure)
                 }
             }
 
@@ -67,7 +67,7 @@ class NetworkServiceTests: XCTestCase {
         networkService.fetchTasks { result in
             switch result {
             case .success(let success):
-                print("")
+                print(success)
             case .failure(let failure):
                 XCTAssertTrue(!failure.localizedDescription.isEmpty, "The line should not be empty")
                 expectation.fulfill()

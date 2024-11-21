@@ -11,14 +11,15 @@ import Combine
 
 protocol TaskListViewInput: AnyObject {
     func showTasks(_ tasks: [TaskEntity])
+    var tasks: [TaskEntity] { get set }
 }
 
 class TaskListViewController: UIViewController, UISearchBarDelegate, UIContextMenuInteractionDelegate {
     
     // MARK: - Properties
     var presenter: TaskListPresenterInput!
-    private var tasks: [TaskEntity] = []
-    
+    var tasks: [TaskEntity] = []
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +85,7 @@ class TaskListViewController: UIViewController, UISearchBarDelegate, UIContextMe
         presenter = TaskListPresenter()
         presenter.view = self
         setupUI()
-        presenter.fetchTasksFromNetwork()
+//        presenter.fetchTasksFromNetwork()
         observeSearchTextChanges()
         tableView.reloadData()
         
