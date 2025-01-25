@@ -231,8 +231,10 @@ extension TaskListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configure(with: task) // Конфигурируем ячейку
             
             // Создаем интеракцию для контекстного меню
-            let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
-            cell.addInteraction(contextMenuInteraction)
+            if cell.interactions.isEmpty {
+                let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
+                cell.addInteraction(contextMenuInteraction)
+            }
             return cell
         } else {
             fatalError("Expected TaskCell, but got a different cell type or nil.") // Вызывает ошибку, если тип ячейки неправильный

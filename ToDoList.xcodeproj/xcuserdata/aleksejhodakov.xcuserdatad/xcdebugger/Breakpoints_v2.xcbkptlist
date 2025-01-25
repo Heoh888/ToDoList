@@ -14,8 +14,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "datePickerChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "showTaskDetails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,24 +94,8 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "showTaskDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A5AC4BFF-698E-4ED6-9B55-6E15DE95C506"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "showTaskDetails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,42 +110,10 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "874608C5-7977-4EAB-B865-2ACBA0F59EE4 - 1877c28649bcc47f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "680">
-               </Location>
-               <Location
-                  uuid = "874608C5-7977-4EAB-B865-2ACBA0F59EE4 - 1877c28649bcc47f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "772">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,72 +126,10 @@
             filePath = "ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "784CA104-BA2F-4571-95D7-E31B92BDD3A4 - 1877c28649bcc47f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "680">
-               </Location>
-               <Location
-                  uuid = "784CA104-BA2F-4571-95D7-E31B92BDD3A4 - 1877c28649bcc47f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "772">
-               </Location>
-               <Location
-                  uuid = "784CA104-BA2F-4571-95D7-E31B92BDD3A4 - 1877c28649bcc41c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "680">
-               </Location>
-               <Location
-                  uuid = "784CA104-BA2F-4571-95D7-E31B92BDD3A4 - 1877c28649bcc41c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskDetailViewController.saveButtonTapped() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskDetail/TaskDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "772">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -272,68 +162,6 @@
             endingLineNumber = "20"
             landmarkName = "fetchTasks(completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "70098457-6826-41AA-BA82-9286F6747EBF - 3d1fce1745b3811"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  uuid = "70098457-6826-41AA-BA82-9286F6747EBF - 481682e3d93f19b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  uuid = "70098457-6826-41AA-BA82-9286F6747EBF - 3d1fce1745b3811"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "608">
-               </Location>
-               <Location
-                  uuid = "70098457-6826-41AA-BA82-9286F6747EBF - 481682e3d93f19b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "608">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -366,68 +194,6 @@
             endingLineNumber = "14"
             landmarkName = "fetchTasks(completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DEA6EAFA-D679-46C0-BAFE-B7BC0CF4F0AA - 3d1fce1745b39ea"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "160">
-               </Location>
-               <Location
-                  uuid = "DEA6EAFA-D679-46C0-BAFE-B7BC0CF4F0AA - 481682e3d93f184f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "160">
-               </Location>
-               <Location
-                  uuid = "DEA6EAFA-D679-46C0-BAFE-B7BC0CF4F0AA - 3d1fce1745b39ea"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "272">
-               </Location>
-               <Location
-                  uuid = "DEA6EAFA-D679-46C0-BAFE-B7BC0CF4F0AA - 481682e3d93f184f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "272">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -444,38 +210,6 @@
             endingLineNumber = "12"
             landmarkName = "MockNetworkService"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "0A8AFCF8-264A-47B6-B462-83575C112CB6 - 3d1fce1745b39cb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  uuid = "0A8AFCF8-264A-47B6-B462-83575C112CB6 - 481682e3d93f186e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "148">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -492,38 +226,6 @@
             endingLineNumber = "15"
             landmarkName = "fetchTasks(completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "39FAD9EA-EEF2-46BF-B155-60BF265BCCCD - 3d1fce1745b3995"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "324">
-               </Location>
-               <Location
-                  uuid = "39FAD9EA-EEF2-46BF-B155-60BF265BCCCD - 481682e3d93f1830"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoListTests.MockNetworkService.fetchTasks(completion: (Swift.Result&lt;ToDoListTests.TaskListEntity, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ToDoListTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoListTests/MockNetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "324">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -572,38 +274,6 @@
             endingLineNumber = "45"
             landmarkName = "fetchTasksFromNetwork()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4B5D9816-26AD-4637-A66B-ECA41D082124 - 38126b1fef5fb919"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "320">
-               </Location>
-               <Location
-                  uuid = "4B5D9816-26AD-4637-A66B-ECA41D082124 - 38126b1fef5fb919"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "720">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -620,38 +290,6 @@
             endingLineNumber = "49"
             landmarkName = "fetchTasksFromNetwork()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A794EECB-E9A1-41BE-8AF3-7EEC304E375C - 38126b1fef5fba85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "976">
-               </Location>
-               <Location
-                  uuid = "A794EECB-E9A1-41BE-8AF3-7EEC304E375C - 7a0b59ad7e26b829"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "52">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -684,38 +322,6 @@
             endingLineNumber = "51"
             landmarkName = "fetchTasksFromNetwork()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1D4B37E3-5EA9-40AD-B275-83FEF924AA95 - 7a0b59ad7e26b8ef"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  uuid = "1D4B37E3-5EA9-40AD-B275-83FEF924AA95 - 7d7cc7dff124b0af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;ToDoList.TaskListEntity, Swift.Error&gt;) -&gt; () in closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.fetchTasksFromNetwork() -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "112">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -748,38 +354,6 @@
             endingLineNumber = "87"
             landmarkName = "saveTasks(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D2A7647D-7AD3-4D68-BB3C-A3F03591C334 - 28ec61765d66b198"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.saveTasks(Swift.Array&lt;ToDoList.TaskEntity&gt;) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "516">
-               </Location>
-               <Location
-                  uuid = "D2A7647D-7AD3-4D68-BB3C-A3F03591C334 - 28ec61765d66b198"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.saveTasks(Swift.Array&lt;ToDoList.TaskEntity&gt;) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "968">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -828,38 +402,6 @@
             endingLineNumber = "114"
             landmarkName = "validateTasksUniqueness(taskList:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0364DA01-BD82-411F-AD48-4D44B923E2AC - 36e80fe7c5141e1e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskListInteractor.validateTasksUniqueness(taskList: ToDoList.TaskListEntity) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112"
-                  offsetFromSymbolStart = "468">
-               </Location>
-               <Location
-                  uuid = "0364DA01-BD82-411F-AD48-4D44B923E2AC - 10c81a93aa576a8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (ToDoList.TaskEntity) -&gt; Swift.Bool in ToDoList.TaskListInteractor.validateTasksUniqueness(taskList: ToDoList.TaskListEntity) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -892,38 +434,22 @@
             endingLineNumber = "86"
             landmarkName = "saveTasks(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "42CD080C-9A2C-4A5F-B56C-7A7D3D29A8D3 - 81fe4a6ad0bd7909"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoList.TaskListInteractor.saveTasks(Swift.Array&lt;ToDoList.TaskEntity&gt;) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "220">
-               </Location>
-               <Location
-                  uuid = "42CD080C-9A2C-4A5F-B56C-7A7D3D29A8D3 - 28ec61765d66b1da"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in ToDoList.TaskListInteractor.saveTasks(Swift.Array&lt;ToDoList.TaskEntity&gt;) -&gt; ()"
-                  moduleName = "ToDoList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleksejhodakov/Desktop/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5/ToDoList/ToDoList/Modules/TaskList/TaskListInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "344">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37526986-09E5-40A3-B990-33B466826D5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoList/Modules/TaskList/TaskListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "observeSearchTextChanges()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

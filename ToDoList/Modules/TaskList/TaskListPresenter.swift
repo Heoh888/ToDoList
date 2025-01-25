@@ -77,7 +77,8 @@ class TaskListPresenter: TaskListPresenterInput {
     func searchTasks(_ searchText: String) {
         guard let view = view else { return }
         let searchLowercased = searchText.lowercased()
-        
+        guard let interactor = interactor else { return }
+        interactor.fetchTasksFromLocalStorage()
         // Фильтр задач, проверяя название и описание
         let filteredTasks = view.tasks.filter { task in
             task.title.lowercased().contains(searchLowercased) ||

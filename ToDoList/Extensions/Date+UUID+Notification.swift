@@ -13,7 +13,7 @@ extension Date {
     /// - Returns: Возвращает строку в формате "dd/MM/yyyy"
     func formatDate() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy" // Задаем формат даты
+        dateFormatter.dateFormat = "dd/MM/yy" // Задаем формат даты
         return dateFormatter.string(from: self) // Возвращаем форматированную строку
     }
 }
@@ -33,4 +33,13 @@ extension UUID {
 extension Notification.Name {
     /// Константа уведомления, которая сигнализирует о том, что изменились задачи.
     static let tasksDidChange = Notification.Name("tasksDidChange") // Наблюдаемая константа для изменения задач
+}
+
+extension String {
+    // Метод для преобразования строки в объект Date
+    func toDate(format: String = "dd/MM/yy") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
+    }
 }
