@@ -34,8 +34,8 @@
 		864311022CEDF7650000F28C /* TaskDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BDD2CE7010C00ED4582 /* TaskDetailInteractor.swift */; };
 		864311042CEDF76C0000F28C /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670DCD12CECAAE200AC22EB /* ContextMenuViewController.swift */; };
 		864311052CEDF7700000F28C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB6BF02CE7130A00ED4582 /* TaskCell.swift */; };
-		864311062CEDF77B0000F28C /* Date+UUID+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */; };
-		864311072CEDF77B0000F28C /* Date+UUID+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */; };
+		864311062CEDF77B0000F28C /* Date+UUID+Notification+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift */; };
+		864311072CEDF77B0000F28C /* Date+UUID+Notification+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift */; };
 		865B5D452D463E810052D1F8 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5D442D463E810052D1F8 /* SpeechService.swift */; };
 		865B5D462D463E810052D1F8 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5D442D463E810052D1F8 /* SpeechService.swift */; };
 		865B5D472D463E810052D1F8 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5D442D463E810052D1F8 /* SpeechService.swift */; };
@@ -77,7 +77,7 @@
 		86E443342CEF00FA0039DC81 /* MockStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E443332CEF00FA0039DC81 /* MockStorageManager.swift */; };
 		86E443362CEF02520039DC81 /* TaskListPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E443352CEF02520039DC81 /* TaskListPresenterTest.swift */; };
 		86E443392CEF1EE70039DC81 /* MockTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E443382CEF1EE70039DC81 /* MockTaskListViewController.swift */; };
-		86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */; };
+		86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +133,7 @@
 		86E443332CEF00FA0039DC81 /* MockStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageManager.swift; sourceTree = "<group>"; };
 		86E443352CEF02520039DC81 /* TaskListPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListPresenterTest.swift; sourceTree = "<group>"; };
 		86E443382CEF1EE70039DC81 /* MockTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTaskListViewController.swift; sourceTree = "<group>"; };
-		86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+UUID+Notification.swift"; sourceTree = "<group>"; };
+		86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+UUID+Notification+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,7 +304,7 @@
 		86BB6BC52CE6FABF00ED4582 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification.swift */,
+				86E4ABCB2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,7 +509,7 @@
 				86BB6BE02CE7012800ED4582 /* TaskDetailPresenter.swift in Sources */,
 				86BB6BE42CE7024100ED4582 /* TaskListEntity.swift in Sources */,
 				86BB6BE62CE7036000ED4582 /* TaskEntity.swift in Sources */,
-				86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification.swift in Sources */,
+				86E4ABCC2CE9D36D0071BCC1 /* Date+UUID+Notification+String.swift in Sources */,
 				86BB6BF12CE7130A00ED4582 /* TaskCell.swift in Sources */,
 				86BB6BD22CE6FE1A00ED4582 /* NetworkService.swift in Sources */,
 			);
@@ -529,7 +529,7 @@
 				864310F52CEDF7090000F28C /* SceneDelegate.swift in Sources */,
 				864310E82CEDEF730000F28C /* TaskListInteractorTests.swift in Sources */,
 				867B7CCA2D44C46400F785A5 /* DatePickerViewModel.swift in Sources */,
-				864311062CEDF77B0000F28C /* Date+UUID+Notification.swift in Sources */,
+				864311062CEDF77B0000F28C /* Date+UUID+Notification+String.swift in Sources */,
 				865B5D452D463E810052D1F8 /* SpeechService.swift in Sources */,
 				864310F42CEDF7030000F28C /* TaskModel.swift in Sources */,
 				864310F62CEDF70B0000F28C /* AppDelegate.swift in Sources */,
@@ -566,7 +566,7 @@
 				86BB6BEA2CE7063200ED4582 /* NetworkService.swift in Sources */,
 				86BB6BEC2CE7071400ED4582 /* TaskListEntity.swift in Sources */,
 				867B7CC92D44C46400F785A5 /* DatePickerViewModel.swift in Sources */,
-				864311072CEDF77B0000F28C /* Date+UUID+Notification.swift in Sources */,
+				864311072CEDF77B0000F28C /* Date+UUID+Notification+String.swift in Sources */,
 				864311002CEDF7570000F28C /* TaskModel.swift in Sources */,
 				864310FE2CEDF74A0000F28C /* SceneDelegate.swift in Sources */,
 				864310EE2CEDF6780000F28C /* TaskListInteractor.swift in Sources */,

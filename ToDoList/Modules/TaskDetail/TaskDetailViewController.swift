@@ -190,6 +190,8 @@ class TaskDetailViewController: UIViewController {
     }
 
     private func showDatePickerWithBlurEffect() {
+        self.titleTextView.endEditing(true)
+        self.descriptionTextView.endEditing(true)
         // Создаем и добавляем эффект размытия
         let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)

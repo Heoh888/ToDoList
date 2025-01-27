@@ -10,10 +10,9 @@ import SwiftUI
 struct DatePickerView: View {
     
     let dateString: String
-
     @State var viewModel = DatePickerViewModel()
     
-    // Настройки диапазона
+    /// Настройки диапазона
     private let yearsRange = (1900...2100)
     private let monthsRange = Array(1...12)
     

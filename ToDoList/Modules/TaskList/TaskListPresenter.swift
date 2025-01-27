@@ -124,6 +124,7 @@ class TaskListPresenter: TaskListPresenterInput {
     /// - task: Задача, детали которой нужно показать.
     func navigateToTaskDetail(with task: TaskEntity?) {
         guard let currentView = view else { return }
+        interactor?.stopSpeechRecognition()
         router.navigateToTaskDetail(from: currentView, with: task)
     }
     

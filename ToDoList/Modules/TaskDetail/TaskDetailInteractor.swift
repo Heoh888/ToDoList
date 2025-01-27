@@ -10,8 +10,10 @@ import Foundation
 /// Класс `TaskDetailInteractor` отвечает за взаимодействие между презентером и хранилищем данных.
 /// Он позволяет создавать и обновлять задачи.
 class TaskDetailInteractor {
-    var presenter: TaskDetailPresenterInput? // Презентер, отвечающий за отображение данных
-    var storage: StorageManager = StorageManager.shared // Менеджер хранения данных, использует синглтон
+    /// Презентер, отвечающий за отображение данных
+    var presenter: TaskDetailPresenterInput?
+    /// Менеджер хранения данных, использует синглтон
+    var storage: StorageManager = StorageManager.shared
 
     /// Функция `createTask` создает новую задачу с заданными параметрами.
     /// - Parameters:

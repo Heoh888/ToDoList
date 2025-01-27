@@ -8,12 +8,12 @@ import UIKit
 /// `ContextMenuViewController` - контроллер, который отображает контекстное меню с заголовком, описанием и датой создания.
 class ContextMenuViewController: UIViewController {
     
-    // Переменные для хранения текста заголовка, описания и даты создания
+    /// Переменные для хранения текста заголовка, описания и даты создания
     var titleText: String?
     var descriptionText: String?
     var creationDate: String?
     
-    // Метки для отображения информации
+    /// Метки для отображения информации
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let dateLabel = UILabel()
