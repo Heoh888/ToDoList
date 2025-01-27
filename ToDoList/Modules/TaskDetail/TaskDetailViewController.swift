@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /// Протокол для ввода данных в экран деталей задачи.
 protocol TaskDetailViewInput: AnyObject {
@@ -15,10 +16,12 @@ protocol TaskDetailViewInput: AnyObject {
 
 /// Контроллер для отображения деталей задачи.
 class TaskDetailViewController: UIViewController {
-
+    
     // MARK: - Свойства
     var presenter: TaskDetailPresenterInput!
     var task: TaskEntity?
+    
+    private var hostingController: UIHostingController<DatePickerView>?
 
     /// Кнопка для сохранения задачи.
     private lazy var saveButton: UIBarButtonItem = {
@@ -27,17 +30,9 @@ class TaskDetailViewController: UIViewController {
                                      action: #selector(saveButtonTapped))
         return button
     }()
-
-    /// Выбор даты.
-    private let datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.backgroundColor = .clear
-        picker.tintColor = .black
-        return picker
-    }()
-
+    
+    private var blurEffectView: UIVisualEffectView?
+    
     /// Прокручиваемое представление.
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -46,7 +41,7 @@ class TaskDetailViewController: UIViewController {
         scroll.showsHorizontalScrollIndicator = false
         return scroll
     }()
-
+    
     /// Поле ввода заголовка.
     let titleTextView: UITextView = {
         let textView = UITextView()
@@ -58,16 +53,18 @@ class TaskDetailViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
-
+    
     /// Метка для отображения даты.
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
+        label.textAlignment = .left
         return label
     }()
-
+    
     /// Плейсхолдер для заголовка.
     private let placeholderTitle: UILabel = {
         let label = UILabel()
@@ -77,7 +74,7 @@ class TaskDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     /// Поле ввода описания задачи.
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
@@ -87,7 +84,7 @@ class TaskDetailViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
-
+    
     /// Плейсхолдер для описания задачи.
     private let placeholderDescription: UILabel = {
         let label = UILabel()
@@ -97,7 +94,7 @@ class TaskDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     // MARK: - Жизненный цикл
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +103,7 @@ class TaskDetailViewController: UIViewController {
         setupUI()
         showTaskDetails()
     }
-
+    
     // MARK: - UI Setup
     private func setupUI() {
         navigationController?.navigationBar.tintColor = UIColor(named: "CustomYellow")
@@ -115,14 +112,14 @@ class TaskDetailViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(titleTextView)
         view.addSubview(placeholderTitle)
-        view.addSubview(datePicker)
         view.addSubview(dateLabel)
         view.addSubview(descriptionTextView)
         view.addSubview(placeholderDescription)
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDateLabelTap))
+        dateLabel.addGestureRecognizer(tapGesture)
         setupConstraints()
     }
-
+    
     // MARK: - Констрейнты
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -130,33 +127,30 @@ class TaskDetailViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             scrollView.heightAnchor.constraint(equalToConstant: 70),
-
+            
             titleTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             titleTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             titleTextView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             titleTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             titleTextView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             titleTextView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
-
+            
             placeholderTitle.leadingAnchor.constraint(equalTo: titleTextView.leadingAnchor, constant: 5),
             placeholderTitle.centerYAnchor.constraint(equalTo: titleTextView.centerYAnchor),
-
-            datePicker.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: -10),
-            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-
-            dateLabel.centerYAnchor.constraint(equalTo: datePicker.centerYAnchor),
-            dateLabel.centerXAnchor.constraint(equalTo: datePicker.centerXAnchor),
-
-            descriptionTextView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 10),
+            
+            dateLabel.centerYAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 0),
+            dateLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
+            
+            descriptionTextView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
             descriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             descriptionTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-
+            
             placeholderDescription.leadingAnchor.constraint(equalTo: descriptionTextView.leadingAnchor, constant: 5),
             placeholderDescription.topAnchor.constraint(equalTo: descriptionTextView.topAnchor, constant: 8)
         ])
     }
-
+    
     /// Функция нажатия кнопки сохранения.
     @objc private func saveButtonTapped() {
         // Проверяем, если задача существует
@@ -164,7 +158,7 @@ class TaskDetailViewController: UIViewController {
             let updatedTask = TaskEntity(id: existingTask.id,
                                          title: titleTextView.text,
                                          descriptionText: descriptionTextView.text,
-                                         creationDate: datePicker.date,
+                                         creationDate: dateLabel.text?.toDate() ?? Date(),
                                          isCompleted: existingTask.isCompleted)
             presenter.updateTask(updatedTask)
         } else {
@@ -172,26 +166,79 @@ class TaskDetailViewController: UIViewController {
             let newTask = TaskEntity(id: newId,
                                      title: titleTextView.text,
                                      descriptionText: descriptionTextView.text,
-                                     creationDate: datePicker.date,
+                                     creationDate: Date(),
                                      isCompleted: false)
             presenter.createTask(newTask)
         }
         navigationController?.popViewController(animated: true)
     }
-
+    
     /// Обработка изменения даты в datePicker.
     @objc private func datePickerChanged(_ sender: UIDatePicker) {
         dateLabel.text = sender.date.formatDate()
         // Проверка состояния кнопки сохранения
         checkSaveButtonState()
     }
+    
+    @objc private func handleDateLabelTap() {
+        if blurEffectView == nil && hostingController == nil {
+            showDatePickerWithBlurEffect()
+        } else {
+            hideDatePickerWithBlurEffect()
+            checkSaveButtonState()
+        }
+    }
 
+    private func showDatePickerWithBlurEffect() {
+        self.titleTextView.endEditing(true)
+        self.descriptionTextView.endEditing(true)
+        // Создаем и добавляем эффект размытия
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDateLabelTap))
+        blurView.addGestureRecognizer(tapGesture)
+        view.addSubview(blurView)
+        blurEffectView = blurView
+
+        // Создаем SwiftUI View для выбора даты
+        let swiftUIView = DatePickerView(dateString: dateLabel.text ?? Date().formatDate())
+        hostingController = UIHostingController(rootView: swiftUIView)
+
+        addChild(hostingController!)
+        hostingController!.view.layer.cornerRadius = 20
+        view.addSubview(hostingController!.view)
+        hostingController?.didMove(toParent: self)
+
+        // Устанавливаем констрейнты для SwiftUI View
+        hostingController!.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController!.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            hostingController!.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func hideDatePickerWithBlurEffect() {
+        // Удаляем эффект размытия
+        blurEffectView?.removeFromSuperview()
+        blurEffectView = nil
+
+        // Удаляем представление и обновляем дату
+        if let hostingView = hostingController?.view {
+            dateLabel.text = hostingController?.rootView.viewModel.getDate()
+            hostingView.removeFromSuperview()
+            hostingController?.removeFromParent()
+            hostingController = nil
+        }
+    }
+    
     /// Проверка состояния кнопки сохранения на основе текста в полях.
     private func checkSaveButtonState() {
         let isTitleChanged = titleTextView.text != task?.title && task != nil
         let isDescriptionChanged = descriptionTextView.text != task?.descriptionText && task != nil
-        let isDateChanged = !(datePicker.date == task?.creationDate)
-
+        let isDateChanged = !(dateLabel.text?.toDate() == task?.creationDate) && (dateLabel.text != "Установите дату")
         // Кнопка активна, если изменено описание, заголовок или изменена дата и заголовок не пустой
         saveButton.isEnabled = isDescriptionChanged || isTitleChanged || (isDateChanged && !titleTextView.text.isEmpty)
         navigationItem.rightBarButtonItem = saveButton
@@ -205,8 +252,7 @@ extension TaskDetailViewController: TaskDetailViewInput {
             dateLabel.text = Date().formatDate()
             return
         }
-        datePicker.date = existingTask.creationDate ?? Date()
-        dateLabel.text = (existingTask.creationDate ?? Date()).formatDate()
+        dateLabel.text = existingTask.creationDate?.formatDate() ?? "Установите дату"
         placeholderTitle.text = ""
         placeholderDescription.text = ""
         titleTextView.text = existingTask.title
@@ -219,11 +265,11 @@ extension TaskDetailViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         checkPlaceholder(for: titleTextView, placeholderLabel: placeholderTitle)
         checkPlaceholder(for: descriptionTextView, placeholderLabel: placeholderDescription)
-
+        
         // Проверяем состояние кнопки сохранения
         checkSaveButtonState()
     }
-
+    
     /// Проверка видимости плейсхолдера.
     private func checkPlaceholder(for textView: UITextView, placeholderLabel: UILabel) {
         placeholderLabel.isHidden = !textView.text.isEmpty

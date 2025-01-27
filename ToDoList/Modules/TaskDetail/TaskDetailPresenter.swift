@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Observation
 
 /// Протокол `TaskDetailPresenterInput` определяет интерфейс для презентера деталей задачи.
 protocol TaskDetailPresenterInput {
