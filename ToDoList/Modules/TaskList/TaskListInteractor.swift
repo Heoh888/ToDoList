@@ -5,27 +5,47 @@
 //  Created by Алексей Ходаков on 15.11.2024.
 //
 import Foundation
+import Combine
 
 /// Протокол `TaskListInteractorInput` описывает интерфейс для взаимодействия с задачами.
 /// Он определяет обязательные методы для получения задач из сети и локального хранилища,
 /// а также для удаления конкретной задачи по идентификатору.
 protocol TaskListInteractorInput {
-    var networkService: NetworkServiceInput? { get set } // Сервис для работы с сетью
-    func fetchTasksFromNetwork() // Получение задач из сети
-    func fetchTasksFromLocalStorage() // Получение задач из локального хранилища
-    func deleteTask(with id: Int16) // Удаление задачи по идентификатору
+    /// Сервис для работы с сетью
+    var networkService: NetworkServiceInput? { get set }
+    /// Сервис для распознавания речи
+    var speechService: SpeechServiceInput? { get set }
+    /// Получение задач из сети
+    func fetchTasksFromNetwork()
+    /// Получение задач из локального хранилища
+    func fetchTasksFromLocalStorage()
+    /// Удаление задачи по идентификатору
+    func deleteTask(with id: Int16)
+    /// Метод для начала распознавания речи.
+    func startSpeechRecognition(completion: @escaping (String) -> Void)
+    /// Метод для остановки распознавания речи.
+    func stopSpeechRecognition()
 }
 
 /// Класс `TaskListInteractor` реализует протокол `TaskListInteractorInput`
 /// и управляет получением, сохранением и удалением задач.
 class TaskListInteractor: TaskListInteractorInput {
     
-    var presenter: TaskListPresenterInput? // Презентер для отправки данных
-    var networkService: NetworkServiceInput? // Сервис для работы с сетью
-    var localStorage: StorageManagerInput? // Локальное хранилище для задач
-    private let userDefaults = UserDefaults.standard // Стандартное хранилище пользовательских данных
-    private let operationQueue = OperationQueue() // Очередь операций для обработки задач
-     
+    /// Презентер для отправки данных
+    var presenter: TaskListPresenterInput?
+    /// Сервис для работы с сетью
+    var networkService: NetworkServiceInput?
+    /// Локальное хранилище для задач
+    var localStorage: StorageManagerInput?
+    /// Сервис для распознавания речи
+    var speechService: SpeechServiceInput?
+    /// Стандартное хранилище пользовательских данных
+    private let userDefaults = UserDefaults.standard
+    /// Очередь операций для обработки задач
+    private let operationQueue = OperationQueue()
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     /// Инициализирует `TaskListInteractor`.
     /// - Parameters:
     ///   - presenter: Презентер для отображения задач.
@@ -33,12 +53,35 @@ class TaskListInteractor: TaskListInteractorInput {
     ///   - localStorage: Локальное хранилище задач, по умолчанию используется общий экземпляр.
     init(presenter: TaskListPresenterInput? = nil,
          networkService: NetworkServiceInput? = NetworkService(),
-         localStorage: StorageManagerInput? = StorageManager.shared) {
+         localStorage: StorageManagerInput? = StorageManager.shared,
+         speechService: SpeechServiceInput? = SpeechService()) {
         self.networkService = networkService
         self.presenter = presenter
         self.localStorage = localStorage
+        self.speechService = speechService
     }
-
+    
+    /// Метод для начала распознавания речи.
+    /// - Parameter completion: Замыкание, которое вызывается с распознанным текстом.
+    func startSpeechRecognition(completion: @escaping (String) -> Void) {
+        guard let initializedSpeechService = self.speechService else { return }
+        // Подписываемся на полученные данные и обрабатываем их
+        initializedSpeechService.recognizedText
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { recognizedText in
+                completion(recognizedText)
+            })
+            .store(in: &cancellables)
+        // Запускаем процесс распознавания
+        initializedSpeechService.start()
+    }
+    
+    /// Метод для остановки распознавания речи.
+    func stopSpeechRecognition() {
+        guard let initializedSpeechService = self.speechService else { return }
+        initializedSpeechService.stop()
+    }
+    
     /// Получает задачи из сети.
     func fetchTasksFromNetwork() {
         // Проверяем, был ли уже загружен первый раз данные
@@ -52,7 +95,8 @@ class TaskListInteractor: TaskListInteractorInput {
                     guard let self = self else { return }
                     switch result {
                     case .success(let taskList):
-                        self.userDefaults.set("Данные были успешно загружены", forKey: "firstLaunch") // Логирование успешного запуска
+                        self.userDefaults.set("Данные были успешно загружены",
+                                              forKey: "firstLaunch") // Логирование успешного запуска
                         self.validateTasksUniqueness(taskList: taskList) // Валидация уникальности задач
                     case .failure(let error):
                         print("Ошибка \(error.localizedDescription)") // Логирование ошибки
@@ -61,14 +105,14 @@ class TaskListInteractor: TaskListInteractorInput {
             }
         }
     }
-     
+    
     /// Удаляет задачу по идентификатору.
     /// - Parameter id: Идентификатор задачи, которую необходимо удалить.
     func deleteTask(with id: Int16) {
         guard let localStorage = localStorage else { return }
         localStorage.deleteTask(with: id) // Удаляем задачу из локального хранилища
     }
-     
+    
     /// Получает задачи из локального хранилища и передает их презентеру.
     func fetchTasksFromLocalStorage() {
         guard let presenter = presenter, let localStorage = localStorage else { return }
@@ -76,7 +120,7 @@ class TaskListInteractor: TaskListInteractorInput {
         let result = convertData(data: localTasks) // Конвертируем данные
         presenter.presentTasks(result) // Отправляем задачи презентеру
     }
-
+    
     /// Сохраняет задачи в локальном хранилище.
     /// - Parameter tasks: Массив задач для сохранения.
     func saveTasks(_ tasks: [TaskEntity]) {
@@ -103,7 +147,7 @@ class TaskListInteractor: TaskListInteractorInput {
         }
         operationQueue.addOperation(operation) // Добавляем операцию в очередь
     }
-
+    
     /// Проверяет уникальность задач из списка переданных задач.
     /// - Parameter taskList: Список задач для проверки уникальности.
     private func validateTasksUniqueness(taskList: TaskListEntity) {
@@ -114,15 +158,15 @@ class TaskListInteractor: TaskListInteractorInput {
         let uniqueTasks = taskList.todos.filter { !existingTaskIds.contains($0.id) } // Фильтруем уникальные задачи
         saveTasks(uniqueTasks) // Сохраняем уникальные задачи
     }
-
+    
     /// Конвертирует данные входных задач в задачи сущности.
     /// - Parameter data: Массив входных задач.
     /// - Returns: Массив сущностей задач.
     internal func convertData(data: [TaskInput]) -> [TaskEntity] {
         return data.map { TaskEntity(id: $0.id,
-                                      title: $0.title,
-                                      descriptionText: $0.descriptionText,
-                                      creationDate: $0.creationDate,
-                                      isCompleted: $0.isCompleted) }
+                                     title: $0.title,
+                                     descriptionText: $0.descriptionText,
+                                     creationDate: $0.creationDate,
+                                     isCompleted: $0.isCompleted) }
     }
 }

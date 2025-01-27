@@ -9,25 +9,40 @@ import Foundation
 
 // MARK: - Протокол для ввода презентера списка задач
 protocol TaskListPresenterInput {
-    var view: TaskListViewInput? { get set } // Представление, с которым работает презентер
-    var interactor: TaskListInteractorInput? { get set } // Интерфейс взаимодействия с данными
-    func presentTasks(_ tasks: [TaskEntity]) // Отображение задач
-    func fetchTasksFromLocalStorage() // Получение задач из локального хранилища
-    func fetchTasksFromNetwork() // Получение задач из сети
-    func navigateToTaskDetail(with task: TaskEntity?) // Навигация к деталям задачи
-    func searchTasks(_ searchText: String) // Поиск задач по тексту
-    func deleteTask(with identifier: Int16) // Удаление задачи по идентификатору
-    func sortTasksByDate(_ tasks: [TaskEntity]) -> [TaskEntity] // Сортировка задач по дате
+    /// Представление, с которым работает презентер
+    var view: TaskListViewInput? { get set }
+    /// Интерфейс взаимодействия с данными
+    var interactor: TaskListInteractorInput? { get set }
+    /// Отображение задач
+    func presentTasks(_ tasks: [TaskEntity])
+    /// Получение задач из локального хранилища
+    func fetchTasksFromLocalStorage()
+    /// Получение задач из сети
+    func fetchTasksFromNetwork()
+    /// Навигация к деталям задачи
+    func navigateToTaskDetail(with task: TaskEntity?)
+    /// Поиск задач по тексту
+    func searchTasks(_ searchText: String)
+    /// Удаление задачи по идентификатору
+    func deleteTask(with identifier: Int16)
+    /// Сортировка задач по дате
+    func sortTasksByDate(_ tasks: [TaskEntity]) -> [TaskEntity]
+    /// Метод для начала распознавания речи.
+    func startSpeechRecognition(completion: @escaping (String) -> Void)
+    /// Метод для остановки распознавания речи.
+    func stopSpeechRecognition()
 }
 
 // MARK: - Презентер для списка задач
 class TaskListPresenter: TaskListPresenterInput {
 
     // MARK: - Свойства
-
-    var view: TaskListViewInput? // Связываемое представление
-    var interactor: TaskListInteractorInput? // Взаимодействие с данными
-    var router: TaskListRouting = TaskListRouter() // Маршрутизатор для навигации
+    /// Связываемое представление
+    var view: TaskListViewInput?
+    /// Взаимодействие с данными
+    var interactor: TaskListInteractorInput?
+    /// Маршрутизатор для навигации
+    var router: TaskListRouting = TaskListRouter()
 
     /// Инициализатор для презентера списка задач.
     /// - Parameters:
@@ -42,6 +57,19 @@ class TaskListPresenter: TaskListPresenterInput {
     }
 
     // MARK: - Методы презентера
+    
+    /// Метод для начала распознавания речи.
+    /// - Parameter completion: Замыкание, которое вызывается с распознанным текстом.
+    func startSpeechRecognition(completion: @escaping (String) -> Void) {
+        guard let interactor = interactor else { return }
+        interactor.startSpeechRecognition { completion($0) }
+    }
+    
+    /// Метод для остановки распознавания речи.
+    func stopSpeechRecognition() {
+        guard let interactor = interactor else { return }
+        interactor.stopSpeechRecognition()
+    }
     
     /// Запрашивает задачи из локального хранилища.
     func fetchTasksFromLocalStorage() {
