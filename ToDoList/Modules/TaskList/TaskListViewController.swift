@@ -141,10 +141,6 @@ class TaskListViewController: UIViewController, UIContextMenuInteractionDelegate
         presenter.fetchTasksFromLocalStorage()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     // MARK: - UI Setup
     /// Настройка пользовательского интерфейса
     private func setupUI() {
@@ -250,28 +246,6 @@ class TaskListViewController: UIViewController, UIContextMenuInteractionDelegate
 
 // MARK: - extension TaskListViewController
 extension TaskListViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    
-    /// Функция, вызываемая при клике на кнопку закладок в поисковой строке.
-    /// - Parameters:
-    ///   - searchBar: Поисковая строка, на которой произошло событие.
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        guard
-            let interactor = presenter.interactor,
-            let speechService = interactor.speechService
-        else { return }
-        searchBar.tintColor = .red
-        if speechService.recognitionRequest == nil {
-            interactor.startSpeechRecognition { [weak self] searchText in
-                guard let self = self else { return }
-                // Передаем распознанный текст презентеру для поиска
-                self.presenter.searchTasks(searchText)
-                // Устанавливаем распознанный текст в текстовое поле
-                self.searchTextField.text = searchText
-            }
-        } else {
-            interactor.stopSpeechRecognition()
-        }
-    }
     
     /// Метод возвращает количество строк для отображения в заданном разделе таблицы.
     /// - Parameters:
